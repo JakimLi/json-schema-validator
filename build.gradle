@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+ext {
+    junit = '4.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            "junit:junit:${junit}"
+    )
+}
+
+wrapper {
+    gradleVersion = '4.10.2'
+}
