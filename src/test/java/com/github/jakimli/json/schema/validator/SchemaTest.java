@@ -7,7 +7,7 @@ import static com.github.jakimli.json.schema.validator.Schema.validate;
 public class SchemaTest {
 
     @Test
-    public void setupProject() {
-        validate();
+    public void no_constraints() {
+        validate("{}", "{\"any\": \"json\"}");
     }
 }

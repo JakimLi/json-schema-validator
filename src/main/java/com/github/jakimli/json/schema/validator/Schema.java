@@ -1,10 +1,14 @@
 package com.github.jakimli.json.schema.validator;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.github.jakimli.json.schema.validator.Rules.rulesOf;
 
 class Schema {
-    static void validate() {
-        assertThat(1, is(1));
+    private List<Rule> rules = new ArrayList<>();
+
+    static void validate(String schema, String instance) {
+        rulesOf(schema).forEach(rule -> rule.apply(instance));
     }
 }
