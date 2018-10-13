@@ -88,4 +88,12 @@ public class SchemaTypeValidatorTest {
         exception.expectMessage("expected type integer, got: " + parse(instance));
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_integer() throws Exception {
+        String schema = readFile("type_specific/integer/schema.json");
+        String instance = readFile("type_specific/integer/integer.json");
+
+        validate(schema, instance);
+    }
 }
