@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator.type;
 
-import com.github.jakimli.json.schema.validator.exception.ViolateJsonSchemaException;
+import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -20,7 +20,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/null/schema.json");
         String instance = readFile("type/null/invalid.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected null, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -38,7 +38,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/boolean/schema.json");
         String instance = readFile("type/boolean/invalid.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type boolean, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -56,7 +56,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/object/schema.json");
         String instance = readFile("type/object/boolean.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type object, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -66,7 +66,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/object/schema.json");
         String instance = readFile("type/object/invalid.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected null, got: " + "wrong");
         validate(schema, instance);
     }
@@ -84,7 +84,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/integer/schema.json");
         String instance = readFile("type/integer/array.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type integer, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -102,7 +102,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/array/schema.json");
         String instance = readFile("type/array/object.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type array, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -120,7 +120,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/array/nested/schema.json");
         String instance = readFile("type/array/nested/object.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type array, got: {\"not\":\"array\"}");
         validate(schema, instance);
     }
@@ -138,7 +138,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/number/schema.json");
         String instance = readFile("type/number/integer.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type number, got: " + parse(instance));
         validate(schema, instance);
     }
@@ -156,7 +156,7 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type/string/schema.json");
         String instance = readFile("type/string/integer.json");
 
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type string, got: " + parse(instance));
         validate(schema, instance);
     }

@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator;
 
-import com.github.jakimli.json.schema.validator.exception.ViolateJsonSchemaException;
+import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,7 +15,7 @@ public class ValidatorTest {
 
     @Test
     public void should_validate_invalid_object() throws Exception {
-        exception.expect(ViolateJsonSchemaException.class);
+        exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type integer, got: not integer");
 
         String schema = readFile("product.schema.json");

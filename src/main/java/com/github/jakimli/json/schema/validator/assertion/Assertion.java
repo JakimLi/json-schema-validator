@@ -1,11 +1,11 @@
 package com.github.jakimli.json.schema.validator.assertion;
 
-import com.github.jakimli.json.schema.validator.exception.ViolateJsonSchemaException;
+import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 
 import java.util.function.Predicate;
 
 public interface Assertion {
-    void asserts(Object instance) throws ViolateJsonSchemaException;
+    void asserts(Object instance) throws SchemaViolatedException;
 
     class Builder {
         private Predicate<Object> predicate;
@@ -28,7 +28,7 @@ public interface Assertion {
             if (predicate.test(instance)) {
                 return;
             }
-            throw new ViolateJsonSchemaException(this.message, instance);
+            throw new SchemaViolatedException(this.message, instance);
         }
     }
 }
