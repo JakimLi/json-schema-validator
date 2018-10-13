@@ -1,7 +1,8 @@
 package com.github.jakimli.json.schema.validator.type;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.assertion.Assertions;
+
+import static com.github.jakimli.json.schema.validator.assertion.Assertions.booleanType;
 
 class BooleanType extends SchemaType {
     BooleanType(String location, JSONObject schema) {
@@ -10,6 +11,6 @@ class BooleanType extends SchemaType {
 
     @Override
     void configure() {
-        add(validation(Assertions.booleanType()));
+        add(validation(booleanType()));
     }
 }
