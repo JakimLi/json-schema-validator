@@ -12,6 +12,7 @@ public enum Type {
 
     OBJECT("object", ObjectType::new),
     NULL("null", NullType::new),
+    BOOLEAN("boolean", BooleanType::new),
     INTEGER("integer", IntegerType::new),
     NUMBER("number", NumberType::new),
     ARRAY("array", ArrayType::new),

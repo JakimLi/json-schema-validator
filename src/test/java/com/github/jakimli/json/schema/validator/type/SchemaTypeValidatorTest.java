@@ -1,4 +1,4 @@
-package com.github.jakimli.json.schema.validator.nullable;
+package com.github.jakimli.json.schema.validator.type;
 
 import com.github.jakimli.json.schema.validator.exception.ViolateJsonSchemaException;
 import org.junit.Rule;
@@ -9,7 +9,7 @@ import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class NullTypeValidatorTest {
+public class SchemaTypeValidatorTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -17,8 +17,8 @@ public class NullTypeValidatorTest {
     @Test
     public void validate_not_null() throws Exception {
 
-        String schema = readFile("type_specific/null_type/schema.json");
-        String instance = readFile("type_specific/null_type/invalid.json");
+        String schema = readFile("type_specific/null/schema.json");
+        String instance = readFile("type_specific/null/invalid.json");
 
         exception.expect(ViolateJsonSchemaException.class);
         exception.expectMessage("expected null, got: " + parse(instance));
@@ -27,9 +27,19 @@ public class NullTypeValidatorTest {
 
     @Test
     public void validate_null() throws Exception {
-        String schema = readFile("type_specific/null_type/schema.json");
-        String instance = readFile("type_specific/null_type/valid.json");
+        String schema = readFile("type_specific/null/schema.json");
+        String instance = readFile("type_specific/null/valid.json");
 
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_not_boolean_type() throws Exception {
+        String schema = readFile("type_specific/boolean/schema.json");
+        String instance = readFile("type_specific/boolean/invalid.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type boolean, got: " + parse(instance));
         validate(schema, instance);
     }
 }

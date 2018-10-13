@@ -45,4 +45,10 @@ public class Assertions {
                 .message("expected null")
                 .test(instance);
     }
+
+    public static Assertion booleanType() {
+        return instance -> expect(it -> it instanceof Boolean)
+                .message("expected type boolean")
+                .test(instance);
+    }
 }
