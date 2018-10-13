@@ -42,4 +42,12 @@ public class SchemaTypeValidatorTest {
         exception.expectMessage("expected type boolean, got: " + parse(instance));
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_boolean_type() throws Exception {
+        String schema = readFile("type_specific/boolean/schema.json");
+        String instance = readFile("type_specific/boolean/valid.json");
+
+        validate(schema, instance);
+    }
 }
