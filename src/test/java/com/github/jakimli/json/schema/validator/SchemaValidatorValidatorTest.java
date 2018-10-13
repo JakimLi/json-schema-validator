@@ -2,9 +2,9 @@ package com.github.jakimli.json.schema.validator;
 
 import org.junit.Test;
 
-import static com.github.jakimli.json.schema.validator.Schema.validate;
+import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 
-public class SchemaTest {
+public class SchemaValidatorValidatorTest {
 
     @Test
     public void no_constraints() {
