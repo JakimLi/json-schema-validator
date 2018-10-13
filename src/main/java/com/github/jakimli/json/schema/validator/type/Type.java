@@ -20,14 +20,14 @@ public enum Type {
         this.factory = factory;
     }
 
-    public static Type fromKeyword(String keyword) {
+    public static Type typeOf(String keyword) {
         return stream(Type.values())
                 .filter(type -> type.keyword.equals(keyword))
                 .findFirst()
                 .orElseThrow(() -> invalidKeywordException(keyword));
     }
 
-    public JsonSchema collector(String location, JSONObject schema) {
+    public JsonSchema schema(String location, JSONObject schema) {
         return this.factory.create(location, schema);
     }
 

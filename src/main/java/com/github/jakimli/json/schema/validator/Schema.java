@@ -6,7 +6,7 @@ import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
 
-import static com.github.jakimli.json.schema.validator.type.Type.fromKeyword;
+import static com.github.jakimli.json.schema.validator.type.Type.typeOf;
 
 public class Schema implements JsonSchema {
     private JSONObject schema;
@@ -22,8 +22,8 @@ public class Schema implements JsonSchema {
     public List<Validation> validations() {
         Object type = this.schema.get("type");
 
-        return fromKeyword((String) type)
-                .collector(location, this.schema)
+        return typeOf((String) type)
+                .schema(location, this.schema)
                 .validations();
     }
 }
