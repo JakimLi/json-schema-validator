@@ -116,6 +116,24 @@ public class SchemaTypeValidatorTest {
     }
 
     @Test
+    public void validate_array_in_object_but_got_object() throws Exception {
+        String schema = readFile("type_specific/array/nested/schema.json");
+        String instance = readFile("type_specific/array/nested/object.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type array, got: {\"not\":\"array\"}");
+        validate(schema, instance);
+    }
+    
+    @Test
+    public void validate_array_in_object() throws Exception {
+        String schema = readFile("type_specific/array/nested/schema.json");
+        String instance = readFile("type_specific/array/nested/array.json");
+
+        validate(schema, instance);
+    }
+
+    @Test
     public void validate_number_but_integer() throws Exception {
         String schema = readFile("type_specific/number/schema.json");
         String instance = readFile("type_specific/number/integer.json");

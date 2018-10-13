@@ -1,0 +1,3 @@
+{
+  "array": ["actual", "array", {"even": "with nested object"}]
+}
