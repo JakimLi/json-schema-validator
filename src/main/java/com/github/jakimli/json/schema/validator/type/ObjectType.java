@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.objectType;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 
-class ObjectType extends AbstractType {
+class ObjectType extends SchemaType {
 
     ObjectType(String location, JSONObject schema) {
         super(location, schema);

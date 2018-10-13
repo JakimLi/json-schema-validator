@@ -9,12 +9,13 @@ import java.util.List;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
 
-public abstract class AbstractType implements Type.JsonSchema {
+public abstract class SchemaType implements Type.JsonSchema {
     final String location;
     protected final JSONObject schema;
-    List<Validation> validations = newArrayList();
 
-    AbstractType(String location, JSONObject schema) {
+    private List<Validation> validations = newArrayList();
+
+    SchemaType(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
     }

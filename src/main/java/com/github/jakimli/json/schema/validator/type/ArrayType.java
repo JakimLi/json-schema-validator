@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.arrayType;
 
-class ArrayType extends AbstractType {
+class ArrayType extends SchemaType {
 
     ArrayType(String location, JSONObject schema) {
         super(location, schema);

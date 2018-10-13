@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.stringType;
 
-class StringType extends AbstractType {
+class StringType extends SchemaType {
 
     StringType(String location, JSONObject schema) {
         super(location, schema);

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.integerType;
 
-class IntegerType extends AbstractType {
+class IntegerType extends SchemaType {
 
     IntegerType(String location, JSONObject schema) {
         super(location, schema);
