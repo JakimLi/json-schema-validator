@@ -5,7 +5,7 @@ import static com.alibaba.fastjson.JSON.parseObject;
 
 class Validator {
     static void validate(String jsonSchema, String jsonInstance) {
-        Schema schema = new Schema(parseObject(jsonSchema));
+        Schema schema = new Schema("$", parseObject(jsonSchema));
         schema.validate(parse(jsonInstance));
     }
 }

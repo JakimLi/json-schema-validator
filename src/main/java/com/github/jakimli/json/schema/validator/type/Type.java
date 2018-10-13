@@ -27,16 +27,15 @@ public enum Type {
                 .orElseThrow(() -> invalidKeywordException(keyword));
     }
 
-    public Validator type(JSONObject schema) {
-        return this.factory.create(schema);
+    public Schema schema(String location, JSONObject schema) {
+        return this.factory.create(location, schema);
     }
 
     interface Factory {
-        Validator create(JSONObject schema);
+        Schema create(String location, JSONObject schema);
     }
 
-    public interface Validator {
+    public interface Schema {
         List<Validation> validations();
     }
-
 }
