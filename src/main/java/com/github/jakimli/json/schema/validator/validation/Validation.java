@@ -13,8 +13,8 @@ public class Validation {
         this.assertion = assertion;
     }
 
-    public boolean validate(Object instance) {
-        return assertion.asserts(path(instance));
+    public void validate(Object instance) {
+        assertion.asserts(path(instance));
     }
 
     private Object path(Object instance) {
