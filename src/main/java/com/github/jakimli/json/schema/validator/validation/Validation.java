@@ -8,7 +8,7 @@ public class Validation {
     private String location;
     private Assertion assertion;
 
-    public Validation(String location, Assertion assertion) {
+    private Validation(String location, Assertion assertion) {
         this.location = location;
         this.assertion = assertion;
     }
