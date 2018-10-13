@@ -3,6 +3,7 @@ apply plugin: 'java'
 ext {
     junit = '4.12'
     fastjson = '1.2.47'
+    guava = '26.0-jre'
 }
 
 repositories {
@@ -12,7 +13,8 @@ repositories {
 dependencies {
     compile(
             "junit:junit:${junit}",
-            "com.alibaba:fastjson:${fastjson}"
+            "com.alibaba:fastjson:${fastjson}",
+            "com.google.guava:guava:${guava}"
     )
 }
 

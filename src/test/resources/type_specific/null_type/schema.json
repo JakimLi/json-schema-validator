@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://github.com/jakimli/null.schema.json",
+  "title": "null type",
+  "description": "null type",
+  "type": "null"
+}
