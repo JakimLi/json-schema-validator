@@ -114,4 +114,22 @@ public class SchemaTypeValidatorTest {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_number_but_integer() throws Exception {
+        String schema = readFile("type_specific/number/schema.json");
+        String instance = readFile("type_specific/number/integer.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type number, got: " + parse(instance));
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_number() throws Exception {
+        String schema = readFile("type_specific/number/schema.json");
+        String instance = readFile("type_specific/number/number.json");
+
+        validate(schema, instance);
+    }
 }
