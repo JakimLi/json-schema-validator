@@ -14,6 +14,31 @@ public class ValidatorTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
+    public void always_valid() throws Exception {
+        validate("{}", "whatever");
+        validate("{}", "{}");
+        validate("{}", "{\"a\": 13}");
+        validate("{}", "13");
+
+        validate("true", "whatever");
+        validate("true", "{}");
+        validate("true", "{\"a\": 13}");
+        validate("true", "13");
+
+        validate(readFile("true.json"), "whatever");
+        validate(readFile("true.json"), "{}");
+        validate(readFile("true.json"), "{\"a\": 13}");
+        validate(readFile("true.json"), "13");
+    }
+
+    @Test
+    public void always_violated() throws Exception {
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("always fail");
+        validate("false", "whatever");
+    }
+
+    @Test
     public void should_validate_invalid_object() throws Exception {
         exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected type integer, got: not integer");

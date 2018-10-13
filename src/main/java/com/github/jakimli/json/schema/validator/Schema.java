@@ -1,29 +1,56 @@
 package com.github.jakimli.json.schema.validator;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import com.github.jakimli.json.schema.validator.type.Type.JsonSchema;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
 
+import static com.alibaba.fastjson.JSON.parse;
+import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 import static com.github.jakimli.json.schema.validator.type.Type.typeOf;
+import static com.google.common.collect.Lists.newArrayList;
 
 public class Schema implements JsonSchema {
-    private JSONObject schema;
+    private Object schema;
 
     private String location;
 
-    public Schema(String location, JSONObject schema) {
+    public Schema(String location, Object schema) {
         this.location = location;
         this.schema = schema;
     }
 
     @Override
     public List<Validation> validations() {
-        Object type = this.schema.get("type");
+        if (alwaysTrue(schema)) {
+            return newArrayList();
+        }
+
+        if (alwaysFalse(schema)) {
+            throw new SchemaViolatedException("always fail");
+        }
+
+        if (!(schema instanceof JSONObject)) {
+            throw invalidSchema("invalid schema");
+        }
+
+        JSONObject schema = (JSONObject) this.schema;
+        Object type = schema.get("type");
 
         return typeOf((String) type)
-                .schema(location, this.schema)
+                .schema(location, schema)
                 .validations();
     }
+
+    private static boolean alwaysTrue(Object schema) {
+        return (parse("{}").equals(schema) || parse("true").equals(schema));
+    }
+
+
+    private static boolean alwaysFalse(Object schema) {
+        return parse("false").equals(schema);
+    }
+
 }
