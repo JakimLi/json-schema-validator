@@ -70,4 +70,22 @@ public class SchemaTypeValidatorTest {
         exception.expectMessage("expected null, got: " + "wrong");
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_valid_object() throws Exception {
+        String schema = readFile("type_specific/object/schema.json");
+        String instance = readFile("type_specific/object/valid.json");
+
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_integer_type_but_array() throws Exception {
+        String schema = readFile("type_specific/integer/schema.json");
+        String instance = readFile("type_specific/integer/array.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type integer, got: " + parse(instance));
+        validate(schema, instance);
+    }
 }
