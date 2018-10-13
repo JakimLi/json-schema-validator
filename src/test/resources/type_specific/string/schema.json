@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://github.com/jakimli/string.schema.json",
+  "title": "string type",
+  "description": "string type",
+  "type": "string"
+}
