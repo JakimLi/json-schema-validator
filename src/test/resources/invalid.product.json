@@ -1,5 +1,5 @@
 {
-  "productId": "expect to be integer",
+  "productId": "not integer",
   "productName": "A green door",
   "price": 12.50,
   "tags": [ "home", "green" ]

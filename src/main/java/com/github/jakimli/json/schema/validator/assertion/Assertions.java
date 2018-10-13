@@ -1,29 +1,41 @@
 package com.github.jakimli.json.schema.validator.assertion;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.List;
+
+import static com.github.jakimli.json.schema.validator.assertion.Assertion.Builder.expect;
 
 public class Assertions {
 
     public static Assertion objectType() {
-        return instance -> instance instanceof JSONObject;
+        return instance -> expect(it -> it instanceof JSONObject)
+                .message("expected type object")
+                .test(instance);
     }
 
     public static Assertion stringType() {
-        return instance -> instance instanceof String;
+        return instance -> expect(it -> it instanceof String)
+                .message("expected type string")
+                .test(instance);
     }
 
     public static Assertion integerType() {
-        return instance -> instance instanceof Integer;
+        return instance -> expect(it -> it instanceof Integer)
+                .message("expected type integer")
+                .test(instance);
     }
 
     public static Assertion numberType() {
-        return instance -> instance instanceof BigDecimal;
+        return instance -> expect(it -> it instanceof BigDecimal)
+                .message("expected type number")
+                .test(instance);
     }
 
     public static Assertion arrayType() {
-        return instance -> instance instanceof JSONArray;
+        return instance -> expect(it -> it instanceof List)
+                .message("expected type array")
+                .test(instance);
     }
 }
