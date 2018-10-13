@@ -1,5 +1,6 @@
 package com.github.jakimli.json.schema.validator;
 
+import com.github.jakimli.json.schema.validator.exception.InvalidException;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator.assertion;
 
-public class NullAssertion implements Assertion {
+public class NullTypeAssertion implements Assertion {
 
     private Object instance;
 
