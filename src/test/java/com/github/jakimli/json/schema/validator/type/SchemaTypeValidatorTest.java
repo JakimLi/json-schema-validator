@@ -96,4 +96,22 @@ public class SchemaTypeValidatorTest {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_array_but_object() throws Exception {
+        String schema = readFile("type_specific/array/schema.json");
+        String instance = readFile("type_specific/array/object.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type array, got: " + parse(instance));
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_array() throws Exception {
+        String schema = readFile("type_specific/array/schema.json");
+        String instance = readFile("type_specific/array/array.json");
+
+        validate(schema, instance);
+    }
 }
