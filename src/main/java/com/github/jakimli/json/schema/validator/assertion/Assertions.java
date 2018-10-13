@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.Builder.expect;
 
@@ -36,6 +37,12 @@ public class Assertions {
     public static Assertion arrayType() {
         return instance -> expect(it -> it instanceof List)
                 .message("expected type array")
+                .test(instance);
+    }
+
+    public static Assertion nullType() {
+        return instance -> expect(Objects::isNull)
+                .message("expected null")
                 .test(instance);
     }
 }
