@@ -5,7 +5,7 @@ import com.github.jakimli.json.schema.validator.exception.ViolateJsonSchemaExcep
 import java.util.function.Predicate;
 
 public interface Assertion {
-    boolean asserts(Object instance) throws ViolateJsonSchemaException;
+    void asserts(Object instance) throws ViolateJsonSchemaException;
 
     class Builder {
         private Predicate<Object> predicate;
@@ -24,9 +24,9 @@ public interface Assertion {
             return this;
         }
 
-        boolean test(Object instance) {
+        void test(Object instance) {
             if (predicate.test(instance)) {
-                return true;
+                return;
             }
             throw new ViolateJsonSchemaException(this.message, instance);
         }
