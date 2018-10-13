@@ -2,36 +2,24 @@ package com.github.jakimli.json.schema.validator.type;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.Schema;
-import com.github.jakimli.json.schema.validator.type.Type.JsonSchema;
-import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.objectType;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
-import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
-import static com.google.common.collect.Lists.newArrayList;
 
-public class ObjectType implements JsonSchema {
-
-    private final String location;
-    protected final JSONObject schema;
-
-    private List<Validation> validations = newArrayList();
+class ObjectType extends AbstractType {
 
     ObjectType(String location, JSONObject schema) {
-        this.location = location;
-        this.schema = schema;
-        validations.add(assertion(objectType()).at(location));
+        super(location, schema);
     }
 
     @Override
-    public List<Validation> validations() {
+    void configure() {
+        add(validation(objectType()));
         properties();
-        return validations;
     }
 
     private void properties() {
@@ -48,7 +36,7 @@ public class ObjectType implements JsonSchema {
         JSONObject propertiesSchema = (JSONObject) properties;
         Set<String> keys = propertiesSchema.keySet();
 
-        this.validations.addAll(keys.stream()
+        add(keys.stream()
                 .map(key -> schema(key, propertiesSchema))
                 .map(Schema::validations)
                 .flatMap(Collection::stream)

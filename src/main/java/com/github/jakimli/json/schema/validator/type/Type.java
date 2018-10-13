@@ -10,7 +10,11 @@ import static java.util.Arrays.stream;
 
 public enum Type {
 
-    OBJECT("object", ObjectType::new);
+    OBJECT("object", ObjectType::new),
+    INTEGER("integer", IntegerType::new),
+    NUMBER("number", NumberType::new),
+    ARRAY("array", ArrayType::new),
+    STRING("string", StringType::new);
 
     private String keyword;
     private Factory factory;
