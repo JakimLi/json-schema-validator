@@ -15,7 +15,7 @@ public class SchemaTypeValidatorTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void validate_not_null() throws Exception {
+    public void validate_not_null_type() throws Exception {
 
         String schema = readFile("type_specific/null/schema.json");
         String instance = readFile("type_specific/null/invalid.json");
@@ -26,7 +26,7 @@ public class SchemaTypeValidatorTest {
     }
 
     @Test
-    public void validate_null() throws Exception {
+    public void validate_null_type() throws Exception {
         String schema = readFile("type_specific/null/schema.json");
         String instance = readFile("type_specific/null/valid.json");
 
@@ -48,6 +48,26 @@ public class SchemaTypeValidatorTest {
         String schema = readFile("type_specific/boolean/schema.json");
         String instance = readFile("type_specific/boolean/valid.json");
 
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_object_type_but_boolean() throws Exception {
+        String schema = readFile("type_specific/object/schema.json");
+        String instance = readFile("type_specific/object/boolean.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected type object, got: " + parse(instance));
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_object_type_property_null_type_but_string() throws Exception {
+        String schema = readFile("type_specific/object/schema.json");
+        String instance = readFile("type_specific/object/invalid.json");
+
+        exception.expect(ViolateJsonSchemaException.class);
+        exception.expectMessage("expected null, got: " + "wrong");
         validate(schema, instance);
     }
 }
