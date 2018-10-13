@@ -27,15 +27,15 @@ public enum Type {
                 .orElseThrow(() -> invalidKeywordException(keyword));
     }
 
-    public Schema schema(String location, JSONObject schema) {
+    public JsonSchema collector(String location, JSONObject schema) {
         return this.factory.create(location, schema);
     }
 
     interface Factory {
-        Schema create(String location, JSONObject schema);
+        JsonSchema create(String location, JSONObject schema);
     }
 
-    public interface Schema {
+    public interface JsonSchema {
         List<Validation> validations();
     }
 }

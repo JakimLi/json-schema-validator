@@ -5,8 +5,4 @@ public class Assertions {
     public static Assertion objectType() {
         return new ObjectTypeAssertion();
     }
-
-    public static PropertiesAssertion properties(Object properties) {
-        return new PropertiesAssertion(properties);
-    }
 }

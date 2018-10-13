@@ -6,7 +6,7 @@ import org.junit.Test;
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class SchemaTest {
+public class ValidatorTest {
 
     @Test(expected = ViolateJsonSchemaException.class)
     public void should_validate_object() throws Exception {
