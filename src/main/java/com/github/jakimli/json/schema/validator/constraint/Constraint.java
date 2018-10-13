@@ -3,7 +3,7 @@ package com.github.jakimli.json.schema.validator.constraint;
 import com.github.jakimli.json.schema.validator.assertion.Assertion;
 import com.github.jakimli.json.schema.validator.exception.InvalidException;
 
-import static com.alibaba.fastjson.JSON.parseObject;
+import static com.alibaba.fastjson.JSON.parse;
 import static com.alibaba.fastjson.JSONPath.compile;
 
 public class Constraint {
@@ -22,6 +22,6 @@ public class Constraint {
     }
 
     private Object subInstance(String instance) {
-        return compile(location).eval(parseObject(instance));
+        return compile(location).eval(parse(instance));
     }
 }

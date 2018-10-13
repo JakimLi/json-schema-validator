@@ -25,8 +25,18 @@ public class SchemaValidatorValidatorTest {
         validate(schema("null_type"), invalidInstance("null_type"));
     }
 
+    @Test
+    public void validate_object_type() throws Exception {
+        validate(schema("object"), validInstance("object"));
+    }
+
+    @Test(expected = InvalidException.class)
+    public void validate_object_type_with_array() throws Exception {
+        validate(schema("object"), "[]");
+    }
+
     private String invalidInstance(String type) throws IOException {
-        return readFile("type_specific/" + type + "/invalid_instance.json");
+        return readFile("type_specific/" + type + "/invalid.json");
     }
 
     private String schema(String type) throws IOException {
@@ -34,6 +44,6 @@ public class SchemaValidatorValidatorTest {
     }
 
     private String validInstance(String type) throws IOException {
-        return readFile("type_specific/" + type + "/valid_instance.json");
+        return readFile("type_specific/" + type + "/valid.json");
     }
 }
