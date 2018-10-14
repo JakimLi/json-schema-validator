@@ -15,30 +15,28 @@ import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaEx
 import static com.google.common.collect.Lists.newArrayList;
 
 public class Schema implements JsonSchema {
-    private Object schema;
+    private JSONObject schema;
 
     private String location;
 
     public Schema(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
+
+        if (schema == null) {
+            throw invalidSchema("invalid schema");
+        }
     }
 
     @Override
     public List<Validation> validations() {
         List<Validation> validations = newArrayList();
 
-
-        if (!(schema instanceof JSONObject)) {
-            throw invalidSchema("invalid schema");
-        }
-
-        JSONObject schema = (JSONObject) this.schema;
-        Object type = schema.get("type");
+        Object type = this.schema.get("type");
 
         Type keyword = (Type) Keywords.byKeyword("type").get();
         validations.addAll(keyword.validations(this.location, type));
-        validations.addAll(byType(keyword.types(type), schema));
+        validations.addAll(byType(keyword.types(type), this.schema));
 
         return validations;
     }
