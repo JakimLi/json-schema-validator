@@ -65,4 +65,32 @@ public class EnumKeywordTest extends TestBase {
         exception.expectMessage("must be one of values in enum: [{\"name\":\"monica\"}, {\"name\":\"chandler\"}]");
         validate(schema, instance);
     }
+
+    @Test
+    public void should_validate_string_fail_with_mix_type_in_enum() throws Exception {
+        String schema = readFile("keyword/enum/mix.schema.json");
+        String instance = readFile("keyword/enum/string.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("must be one of values in enum: [{\"name\":\"monica\"}, chandler], got: joey");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void should_validate_object_fail_with_mix_type_in_enum() throws Exception {
+        String schema = readFile("keyword/enum/mix.schema.json");
+        String instance = readFile("keyword/enum/object.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("must be one of values in enum: [{\"name\":\"monica\"}, chandler], got: {\"name\":\"joey\"}");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void should_validate_success_with_mix_type_in_enum() throws Exception {
+        String schema = readFile("keyword/enum/mix.schema.json");
+        String instance = readFile("keyword/enum/mix.object.json");
+
+        validate(schema, instance);
+    }
 }
