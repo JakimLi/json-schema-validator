@@ -22,6 +22,10 @@ import static java.util.Arrays.stream;
 
 public class Predicates {
 
+    public static <T> Predicate<T> oneOf(List<T> objects) {
+        return t -> objects.stream().anyMatch(o -> o.equals(t));
+    }
+
     public static <T> Predicate<List<T>> unique() {
         return t -> new HashSet<>(t).size() == t.size();
     }
