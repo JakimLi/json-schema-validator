@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.byKeyword;
 
 public class Schema extends SchemaType implements JsonSchema {
     public Schema(String location, JSONObject schema) {
@@ -25,7 +24,7 @@ public class Schema extends SchemaType implements JsonSchema {
 
         add(TYPE.validations(this));
 
-        add(byType(((Type) byKeyword("type").get()).types(type), this.schema));
+        add(byType(((Type) TYPE.get()).types(type), this.schema));
     }
 
     private List<Validation> byType(List<JsonType> types, JSONObject schema) {
