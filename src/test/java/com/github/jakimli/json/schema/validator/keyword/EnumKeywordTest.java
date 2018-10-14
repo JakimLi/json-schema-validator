@@ -47,4 +47,12 @@ public class EnumKeywordTest extends TestBase {
         exception.expectMessage("must be one of values in enum: [], got: monica");
         validate(schema, instance);
     }
+
+    @Test
+    public void should_validate_when_enum_has_duplicates() throws Exception {
+        String schema = readFile("keyword/enum/duplicate.schema.json");
+        String instance = readFile("keyword/enum/valid.json");
+
+        validate(schema, instance);
+    }
 }
