@@ -14,6 +14,7 @@ public enum Keywords {
 
     TYPE("type", Type::new),
     ENUM("enum", Enum::new),
+    CONST("const", Const::new)
     ;
 
     private String word;

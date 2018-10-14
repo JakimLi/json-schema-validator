@@ -28,6 +28,10 @@ public class Assertions {
                 .toThrow((i) -> violated("expected one of type: " + types, i))::test;
     }
 
+    public static Assertion<Object> mustBe(Object object) {
+        return expect(object::equals).toThrow(i -> violated("must be: " + object, i))::test;
+    }
+
     private static List<Predicate<Object>> predicates(List<JsonType> types) {
         return types.stream().map(Predicates::byType).collect(toList());
     }

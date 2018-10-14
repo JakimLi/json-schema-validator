@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.CONST;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -21,6 +22,7 @@ public abstract class Validator implements JsonType.Validator {
     @Override
     public List<Validation> validate() {
         add(ENUM.validate(this));
+        add(CONST.validate(this));
 
         configure();
         return this.validations;
@@ -32,7 +34,7 @@ public abstract class Validator implements JsonType.Validator {
         this.validations.addAll(newArrayList(validations));
     }
 
-    protected void add(List<Validation> validations) {
+    void add(List<Validation> validations) {
         if (validations == null) {
             return;
         }
