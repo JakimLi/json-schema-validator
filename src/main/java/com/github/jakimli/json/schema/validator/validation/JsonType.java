@@ -16,6 +16,7 @@ import static com.github.jakimli.json.schema.validator.predicates.Predicates.ins
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
 import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 
 public enum JsonType {
 
@@ -40,6 +41,10 @@ public enum JsonType {
                 .filter(type -> type.keyword.equals(keyword))
                 .findFirst()
                 .orElseThrow(() -> invalidKeywordException(keyword));
+    }
+
+    public static List<Predicate<Object>> predicates(List<JsonType> types) {
+        return types.stream().map(JsonType::predicate).collect(toList());
     }
 
     public Predicate<Object> predicate() {
