@@ -44,4 +44,8 @@ public enum Keywords {
 
         return this.get().validations(schema.location(), element);
     }
+
+    public String word() {
+        return word;
+    }
 }

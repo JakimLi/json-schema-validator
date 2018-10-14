@@ -29,6 +29,6 @@ public class Schema extends Validator implements JsonType.Validator {
     }
 
     private List<JsonType> declaredTypes() {
-        return new Type().types(this.schema.get("type"));
+        return new Type().types(this.schema.get(TYPE.word()));
     }
 }
