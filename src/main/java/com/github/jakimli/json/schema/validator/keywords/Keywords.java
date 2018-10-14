@@ -35,7 +35,7 @@ public enum Keywords {
         return supplier.get();
     }
 
-    public List<Validation> validations(SchemaType schema) {
+    public List<Validation> validate(SchemaType schema) {
         Object element = schema.sub(word);
 
         if (element == null) {

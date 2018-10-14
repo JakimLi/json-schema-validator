@@ -21,7 +21,7 @@ public abstract class SchemaType implements JsonType.JsonSchema {
 
     @Override
     public List<Validation> validations() {
-        add(ENUM.validations(this));
+        add(ENUM.validate(this));
 
         configure();
         return this.validations;

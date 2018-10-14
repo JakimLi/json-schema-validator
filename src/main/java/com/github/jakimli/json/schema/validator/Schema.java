@@ -20,7 +20,7 @@ public class Schema extends SchemaType implements JsonSchema {
 
     @Override
     protected void configure() {
-        add(TYPE.validations(this));
+        add(TYPE.validate(this));
         add(subSchema(declaredTypes(), this.schema));
     }
 
@@ -33,6 +33,6 @@ public class Schema extends SchemaType implements JsonSchema {
     }
 
     private List<JsonType> declaredTypes() {
-        return ((Type) TYPE.get()).types(this.schema.get("type"));
+        return new Type().types(this.schema.get("type"));
     }
 }
