@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "friends": {
-          "type": "string",
+          "type": "object",
           "const": {"name": "monica"}
         }
       }
