@@ -1,7 +1,6 @@
 package com.github.jakimli.json.schema.validator;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import com.github.jakimli.json.schema.validator.keywords.Keywords;
 import com.github.jakimli.json.schema.validator.keywords.Type;
 import com.github.jakimli.json.schema.validator.type.JsonType;
@@ -12,7 +11,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -21,7 +19,7 @@ public class Schema implements JsonSchema {
 
     private String location;
 
-    public Schema(String location, Object schema) {
+    public Schema(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
     }
@@ -30,13 +28,6 @@ public class Schema implements JsonSchema {
     public List<Validation> validations() {
         List<Validation> validations = newArrayList();
 
-        if (alwaysTrue(schema)) {
-            return validations;
-        }
-
-        if (alwaysFalse(schema)) {
-            throw new SchemaViolatedException("always fail");
-        }
 
         if (!(schema instanceof JSONObject)) {
             throw invalidSchema("invalid schema");
@@ -60,13 +51,5 @@ public class Schema implements JsonSchema {
                 .collect(Collectors.toList());
     }
 
-    private static boolean alwaysTrue(Object schema) {
-        return (parse("{}").equals(schema) || parse("true").equals(schema));
-    }
-
-
-    private static boolean alwaysFalse(Object schema) {
-        return parse("false").equals(schema);
-    }
 
 }
