@@ -17,9 +17,9 @@ public enum Keywords {
     ;
 
     private String word;
-    private final Supplier<Keyword> supplier;
+    private final Supplier<Keyword<Object>> supplier;
 
-    Keywords(String word, Supplier<Keyword> supplier) {
+    Keywords(String word, Supplier<Keyword<Object>> supplier) {
         this.word = word;
         this.supplier = supplier;
     }
@@ -31,7 +31,7 @@ public enum Keywords {
                 .orElseThrow(() -> invalidKeywordException(keyword));
     }
 
-    public Keyword get() {
+    public Keyword<Object> get() {
         return supplier.get();
     }
 
@@ -43,9 +43,5 @@ public enum Keywords {
         }
 
         return this.get().validations(schema.location(), element);
-    }
-
-    public String word() {
-        return word;
     }
 }
