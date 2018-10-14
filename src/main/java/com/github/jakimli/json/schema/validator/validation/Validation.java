@@ -17,6 +17,7 @@ public class Validation<T> {
         assertion.asserts(path(instance));
     }
 
+    @SuppressWarnings("unchecked")
     private T path(Object instance) {
         Object validating = JSONPath.compile(location).eval(instance);
         return (T) validating;
