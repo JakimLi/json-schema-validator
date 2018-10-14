@@ -1,4 +1,4 @@
-package com.github.jakimli.json.schema.validator.type;
+package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.Schema;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 
-class ObjectType extends SchemaType {
+class ObjectType extends Validator {
 
     ObjectType(String location, JSONObject schema) {
         super(location, schema);
@@ -36,7 +36,7 @@ class ObjectType extends SchemaType {
 
         add(keys.stream()
                 .map(key -> schema(key, propertiesSchema))
-                .map(Schema::validations)
+                .map(Schema::validate)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList()));
     }

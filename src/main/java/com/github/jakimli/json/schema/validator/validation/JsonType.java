@@ -1,7 +1,6 @@
-package com.github.jakimli.json.schema.validator.type;
+package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
 
@@ -33,15 +32,15 @@ public enum JsonType {
                 .orElseThrow(() -> invalidKeywordException(keyword));
     }
 
-    public JsonSchema schema(String location, JSONObject schema) {
+    public Validator validator(String location, JSONObject schema) {
         return this.factory.create(location, schema);
     }
 
     interface Factory {
-        JsonSchema create(String location, JSONObject schema);
+        Validator create(String location, JSONObject schema);
     }
 
-    public interface JsonSchema {
-        List<Validation> validations();
+    public interface Validator {
+        List<Validation> validate();
     }
 }

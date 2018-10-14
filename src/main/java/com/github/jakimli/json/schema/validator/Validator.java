@@ -16,7 +16,7 @@ public class Validator {
         }
 
         Schema schema = new Schema("$", parseObject(jsonSchema));
-        schema.validations().forEach(validation -> validation.validate(parse(jsonInstance)));
+        schema.validate().forEach(validation -> validation.validate(parse(jsonInstance)));
     }
 
     private static boolean alwaysTrue(String schema) {

@@ -1,8 +1,8 @@
-package com.github.jakimli.json.schema.validator.type;
+package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
 
-class NullType extends SchemaType {
+class NullType extends Validator {
     NullType(String location, JSONObject schema) {
         super(location, schema);
     }

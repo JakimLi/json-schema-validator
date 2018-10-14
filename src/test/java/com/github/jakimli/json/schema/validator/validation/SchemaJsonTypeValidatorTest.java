@@ -1,4 +1,4 @@
-package com.github.jakimli.json.schema.validator.type;
+package com.github.jakimli.json.schema.validator.validation;
 
 import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;

@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator.keywords;
 
-import com.github.jakimli.json.schema.validator.type.SchemaType;
+import com.github.jakimli.json.schema.validator.validation.Validator;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public enum Keywords {
         return supplier.get();
     }
 
-    public List<Validation> validate(SchemaType schema) {
+    public List<Validation> validate(Validator schema) {
         Object element = schema.sub(word);
 
         if (element == null) {

@@ -2,7 +2,7 @@ package com.github.jakimli.json.schema.validator.predicates;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.type.JsonType;
+import com.github.jakimli.json.schema.validator.validation.JsonType;
 import com.google.common.collect.ImmutableMap;
 
 import java.math.BigDecimal;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import static com.github.jakimli.json.schema.validator.type.JsonType.ARRAY;
-import static com.github.jakimli.json.schema.validator.type.JsonType.BOOLEAN;
-import static com.github.jakimli.json.schema.validator.type.JsonType.INTEGER;
-import static com.github.jakimli.json.schema.validator.type.JsonType.NULL;
-import static com.github.jakimli.json.schema.validator.type.JsonType.NUMBER;
-import static com.github.jakimli.json.schema.validator.type.JsonType.OBJECT;
-import static com.github.jakimli.json.schema.validator.type.JsonType.STRING;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.ARRAY;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.BOOLEAN;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.INTEGER;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.NULL;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.NUMBER;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.OBJECT;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.STRING;
 import static java.util.Arrays.stream;
 
 public class Predicates {

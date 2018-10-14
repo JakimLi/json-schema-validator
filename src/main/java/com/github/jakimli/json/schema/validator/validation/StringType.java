@@ -1,8 +1,8 @@
-package com.github.jakimli.json.schema.validator.type;
+package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
 
-class StringType extends SchemaType {
+class StringType extends Validator {
 
     StringType(String location, JSONObject schema) {
         super(location, schema);

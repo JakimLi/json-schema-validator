@@ -1,7 +1,7 @@
 package com.github.jakimli.json.schema.validator.assertion;
 
 import com.github.jakimli.json.schema.validator.predicates.Predicates;
-import com.github.jakimli.json.schema.validator.type.JsonType;
+import com.github.jakimli.json.schema.validator.validation.JsonType;
 
 import java.util.List;
 import java.util.Objects;

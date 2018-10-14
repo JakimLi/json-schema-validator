@@ -2,7 +2,7 @@ package com.github.jakimli.json.schema.validator.keywords;
 
 import com.alibaba.fastjson.JSONArray;
 import com.github.jakimli.json.schema.validator.predicates.Predicates;
-import com.github.jakimli.json.schema.validator.type.JsonType;
+import com.github.jakimli.json.schema.validator.validation.JsonType;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.anyOfTypes;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
-import static com.github.jakimli.json.schema.validator.type.JsonType.typeOf;
+import static com.github.jakimli.json.schema.validator.validation.JsonType.typeOf;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
 
