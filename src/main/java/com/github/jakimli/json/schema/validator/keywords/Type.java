@@ -6,6 +6,7 @@ import com.github.jakimli.json.schema.validator.type.JsonType;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
@@ -31,13 +32,21 @@ public class Type implements Keyword<Object> {
 
         if (value instanceof JSONArray) {
             List<String> declaredTypes = ((JSONArray) value).toJavaList(String.class);
-
-            expect(Predicates.<String>unique())
-                    .test(declaredTypes, invalidSchema("types must be unique"));
-
+            assertUnique(declaredTypes);
+            assertNotEmpty(declaredTypes);
             types.addAll(declaredTypes.stream().map(JsonType::typeOf).collect(Collectors.toList()));
         }
 
         return types;
+    }
+
+    private void assertNotEmpty(List<String> declaredTypes) {
+        expect((Predicate<List<String>>) strings -> strings.size() > 0)
+                .test(declaredTypes, invalidSchema("type must be a string or a non-empty array"));
+    }
+
+    private void assertUnique(List<String> declaredTypes) {
+        expect(Predicates.<String>unique())
+                .test(declaredTypes, invalidSchema("types must be unique"));
     }
 }

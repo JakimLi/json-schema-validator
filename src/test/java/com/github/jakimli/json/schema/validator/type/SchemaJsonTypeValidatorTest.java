@@ -206,10 +206,20 @@ public class SchemaJsonTypeValidatorTest {
     @Test
     public void validate_duplicate_type_in_array() throws Exception {
         String schema = readFile("type/multiple/duplicate.type.schema.json");
-        String instance = readFile("type/multiple/array.json");
+        String instance = readFile("type/multiple/string.json");
 
         exception.expect(InvalidSchemaException.class);
         exception.expectMessage("types must be unique");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_empty_type_array() throws Exception {
+        String schema = readFile("type/multiple/empty.type.schema.json");
+        String instance = readFile("type/multiple/string.json");
+
+        exception.expect(InvalidSchemaException.class);
+        exception.expectMessage("type must be a string or a non-empty array");
         validate(schema, instance);
     }
 }

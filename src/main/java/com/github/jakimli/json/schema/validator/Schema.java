@@ -1,7 +1,6 @@
 package com.github.jakimli.json.schema.validator;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.keywords.Keywords;
 import com.github.jakimli.json.schema.validator.keywords.Type;
 import com.github.jakimli.json.schema.validator.type.JsonType;
 import com.github.jakimli.json.schema.validator.type.JsonType.JsonSchema;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.byKeyword;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class Schema implements JsonSchema {
@@ -34,7 +34,7 @@ public class Schema implements JsonSchema {
 
         Object type = this.schema.get("type");
 
-        Type keyword = (Type) Keywords.byKeyword("type").get();
+        Type keyword = (Type) byKeyword("type").get();
         validations.addAll(keyword.validations(this.location, type));
         validations.addAll(byType(keyword.types(type), this.schema));
 
