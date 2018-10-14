@@ -2,15 +2,17 @@ package com.github.jakimli.json.schema.validator;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
+import com.github.jakimli.json.schema.validator.keywords.Keywords;
 import com.github.jakimli.json.schema.validator.keywords.Type;
 import com.github.jakimli.json.schema.validator.type.JsonType.JsonSchema;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
-import static com.github.jakimli.json.schema.validator.type.JsonType.typeOf;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class Schema implements JsonSchema {
@@ -42,10 +44,20 @@ public class Schema implements JsonSchema {
         JSONObject schema = (JSONObject) this.schema;
         Object type = schema.get("type");
 
-        validations.addAll(new Type().validations(this.location, type));
-        validations.addAll(typeOf((String) type).schema(location, schema).validations());
+        Type keyword = (Type) Keywords.byKeyword("type").get();
+        validations.addAll(keyword.validations(this.location, type));
+
+        byType(validations, schema, type, keyword);
 
         return validations;
+    }
+
+    private void byType(List<Validation> validations, JSONObject schema, Object type, Type keyword) {
+        validations.addAll(keyword.types(type).stream()
+                .map(t -> t.schema(location, schema))
+                .map(JsonSchema::validations)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList()));
     }
 
     private static boolean alwaysTrue(Object schema) {

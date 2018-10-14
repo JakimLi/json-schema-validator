@@ -168,4 +168,37 @@ public class SchemaJsonTypeValidatorTest {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_multiple_type() throws Exception {
+        String schema = readFile("type/multiple/schema.json");
+
+        String instance = readFile("type/multiple/string.json");
+        validate(schema, instance);
+
+        instance = readFile("type/multiple/integer.json");
+        validate(schema, instance);
+
+        instance = readFile("type/multiple/number.json");
+        validate(schema, instance);
+
+        instance = readFile("type/multiple/object.json");
+        validate(schema, instance);
+
+        instance = readFile("type/multiple/null.json");
+        validate(schema, instance);
+
+        instance = readFile("type/multiple/boolean.json");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_multiple_type_but_not_included() throws Exception {
+        String schema = readFile("type/multiple/schema.json");
+        String instance = readFile("type/multiple/array.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("expected one of type: [STRING, INTEGER, NULL, BOOLEAN, NUMBER, OBJECT], got: " + parse(instance));
+        validate(schema, instance);
+    }
 }

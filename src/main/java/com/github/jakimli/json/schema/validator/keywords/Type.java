@@ -19,6 +19,10 @@ public class Type implements Keyword<Object> {
 
     @Override
     public List<Validation> validations(String location, Object value) {
+        return newArrayList(assertion(oneOfTypes(types(value))).at(location));
+    }
+
+    public List<JsonType> types(Object value) {
         List<JsonType> types = newArrayList();
 
         if (value instanceof String) {
@@ -34,7 +38,6 @@ public class Type implements Keyword<Object> {
             types.addAll(declaredTypes.stream().map(JsonType::typeOf).collect(Collectors.toList()));
         }
 
-        return newArrayList(assertion(oneOfTypes(types)).at(location));
+        return types;
     }
-
 }
