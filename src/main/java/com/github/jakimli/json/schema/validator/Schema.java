@@ -20,18 +20,19 @@ public class Schema extends SchemaType implements JsonSchema {
 
     @Override
     protected void configure() {
-        Object type = this.schema.get("type");
-
         add(TYPE.validations(this));
-
-        add(byType(((Type) TYPE.get()).types(type), this.schema));
+        add(subSchema(declaredTypes(), this.schema));
     }
 
-    private List<Validation> byType(List<JsonType> types, JSONObject schema) {
+    private List<Validation> subSchema(List<JsonType> types, JSONObject schema) {
         return types.stream()
                 .map(t -> t.schema(location, schema))
                 .map(JsonSchema::validations)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
+    }
+
+    private List<JsonType> declaredTypes() {
+        return ((Type) TYPE.get()).types(this.schema.get("type"));
     }
 }
