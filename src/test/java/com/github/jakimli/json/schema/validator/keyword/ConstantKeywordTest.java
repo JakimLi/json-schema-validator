@@ -18,4 +18,14 @@ public class ConstantKeywordTest extends TestBase {
         exception.expectMessage("must be: monica, got: chandler");
         validate(schema, instance);
     }
+
+    @Test
+    public void constant_object_invalid() throws Exception {
+        String schema = readFile("keyword/const/const.object.schema.json");
+        String instance = readFile("keyword/const/string.invalid.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("must be: {\"name\":\"monica\"}, got: chandler");
+        validate(schema, instance);
+    }
 }
