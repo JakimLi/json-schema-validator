@@ -11,7 +11,7 @@ public class ConstantKeywordTest extends TestBase {
 
     @Test
     public void constant_string_invalid() throws Exception {
-        String schema = readFile("keyword/const/schema.json");
+        String schema = readFile("keyword/const/const.string.schema.json");
         String instance = readFile("keyword/const/string.invalid.json");
 
         exception.expect(SchemaViolatedException.class);
