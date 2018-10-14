@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import com.github.jakimli.json.schema.validator.keywords.Keywords;
 import com.github.jakimli.json.schema.validator.keywords.Type;
+import com.github.jakimli.json.schema.validator.type.JsonType;
 import com.github.jakimli.json.schema.validator.type.JsonType.JsonSchema;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
@@ -46,18 +47,17 @@ public class Schema implements JsonSchema {
 
         Type keyword = (Type) Keywords.byKeyword("type").get();
         validations.addAll(keyword.validations(this.location, type));
-
-        byType(validations, schema, type, keyword);
+        validations.addAll(byType(keyword.types(type), schema));
 
         return validations;
     }
 
-    private void byType(List<Validation> validations, JSONObject schema, Object type, Type keyword) {
-        validations.addAll(keyword.types(type).stream()
+    private List<Validation> byType(List<JsonType> types, JSONObject schema) {
+        return types.stream()
                 .map(t -> t.schema(location, schema))
                 .map(JsonSchema::validations)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     private static boolean alwaysTrue(Object schema) {
