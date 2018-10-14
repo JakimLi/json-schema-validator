@@ -1,6 +1,5 @@
 package com.github.jakimli.json.schema.validator.type;
 
-import com.github.jakimli.json.schema.validator.exception.InvalidSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -167,59 +166,6 @@ public class SchemaJsonTypeValidatorTest {
         String schema = readFile("type/string/schema.json");
         String instance = readFile("type/string/string.json");
 
-        validate(schema, instance);
-    }
-
-    @Test
-    public void validate_multiple_type() throws Exception {
-        String schema = readFile("type/multiple/schema.json");
-
-        String instance = readFile("type/multiple/string.json");
-        validate(schema, instance);
-
-        instance = readFile("type/multiple/integer.json");
-        validate(schema, instance);
-
-        instance = readFile("type/multiple/number.json");
-        validate(schema, instance);
-
-        instance = readFile("type/multiple/object.json");
-        validate(schema, instance);
-
-        instance = readFile("type/multiple/null.json");
-        validate(schema, instance);
-
-        instance = readFile("type/multiple/boolean.json");
-        validate(schema, instance);
-    }
-
-    @Test
-    public void validate_multiple_type_but_not_included() throws Exception {
-        String schema = readFile("type/multiple/schema.json");
-        String instance = readFile("type/multiple/array.json");
-
-        exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected one of type: [STRING, INTEGER, NULL, BOOLEAN, NUMBER, OBJECT], got: " + parse(instance));
-        validate(schema, instance);
-    }
-
-    @Test
-    public void validate_duplicate_type_in_array() throws Exception {
-        String schema = readFile("type/multiple/duplicate.type.schema.json");
-        String instance = readFile("type/multiple/string.json");
-
-        exception.expect(InvalidSchemaException.class);
-        exception.expectMessage("types must be unique");
-        validate(schema, instance);
-    }
-
-    @Test
-    public void validate_empty_type_array() throws Exception {
-        String schema = readFile("type/multiple/empty.type.schema.json");
-        String instance = readFile("type/multiple/string.json");
-
-        exception.expect(InvalidSchemaException.class);
-        exception.expectMessage("type must be a string or a non-empty array");
         validate(schema, instance);
     }
 }
