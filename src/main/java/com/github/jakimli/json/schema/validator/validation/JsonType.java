@@ -1,10 +1,20 @@
 package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.ImmutableMap;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 import static com.github.jakimli.json.schema.validator.exception.InvalidKeywordException.invalidKeywordException;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfArray;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBigDecimal;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBoolean;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfInteger;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
 import static java.util.Arrays.stream;
 
 public enum JsonType {
@@ -30,6 +40,19 @@ public enum JsonType {
                 .filter(type -> type.keyword.equals(keyword))
                 .findFirst()
                 .orElseThrow(() -> invalidKeywordException(keyword));
+    }
+
+    public Predicate<Object> predicate() {
+        Map<JsonType, Predicate<Object>> predicates = ImmutableMap.<JsonType, Predicate<Object>>builder()
+                .put(ARRAY, instanceOfArray())
+                .put(STRING, instanceOfString())
+                .put(INTEGER, instanceOfInteger())
+                .put(NULL, Objects::isNull)
+                .put(OBJECT, instanceOfObject())
+                .put(BOOLEAN, instanceOfBoolean())
+                .put(NUMBER, instanceOfBigDecimal())
+                .build();
+        return predicates.get(this);
     }
 
     public Validator validator(String location, JSONObject schema) {

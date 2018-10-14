@@ -33,7 +33,7 @@ public class Assertions {
     }
 
     private static List<Predicate<Object>> predicates(List<JsonType> types) {
-        return types.stream().map(Predicates::byType).collect(toList());
+        return types.stream().map(JsonType::predicate).collect(toList());
     }
 
 }
