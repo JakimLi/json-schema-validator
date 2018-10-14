@@ -9,6 +9,6 @@ class StringType extends SchemaType {
     }
 
     @Override
-    void configure() {
+    protected void configure() {
     }
 }

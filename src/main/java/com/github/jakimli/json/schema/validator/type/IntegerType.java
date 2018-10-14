@@ -9,6 +9,6 @@ class IntegerType extends SchemaType {
     }
 
     @Override
-    void configure() {
+    protected void configure() {
     }
 }

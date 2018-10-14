@@ -9,12 +9,12 @@ import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.google.common.collect.Lists.newArrayList;
 
 public abstract class SchemaType implements JsonType.JsonSchema {
-    final String location;
+    protected final String location;
     protected final JSONObject schema;
 
     private List<Validation> validations = newArrayList();
 
-    SchemaType(String location, JSONObject schema) {
+    protected SchemaType(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
     }
@@ -27,13 +27,13 @@ public abstract class SchemaType implements JsonType.JsonSchema {
         return this.validations;
     }
 
-    abstract void configure();
+    protected abstract void configure();
 
     void add(Validation... validations) {
         this.validations.addAll(newArrayList(validations));
     }
 
-    void add(List<Validation> validations) {
+    protected void add(List<Validation> validations) {
         if (validations == null) {
             return;
         }
