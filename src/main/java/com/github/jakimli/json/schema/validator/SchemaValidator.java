@@ -1,10 +1,10 @@
 package com.github.jakimli.json.schema.validator;
 
-import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import com.github.jakimli.json.schema.validator.validation.Schema;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.alibaba.fastjson.JSON.parseObject;
+import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
 
 public class SchemaValidator {
     public static void validate(String jsonSchema, String jsonInstance) {
@@ -13,7 +13,7 @@ public class SchemaValidator {
         }
 
         if (alwaysFalse(jsonSchema)) {
-            throw new SchemaViolatedException("always fail");
+            throw violated("always fail");
         }
 
         Schema schema = new Schema("$", parseObject(jsonSchema));

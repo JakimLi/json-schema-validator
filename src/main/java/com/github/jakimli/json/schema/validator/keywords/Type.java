@@ -42,11 +42,13 @@ public class Type implements Keyword<Object> {
 
     private void assertNotEmpty(List<String> declaredTypes) {
         expect((Predicate<List<String>>) strings -> strings.size() > 0)
-                .test(declaredTypes, invalidSchema("type must be a string or a non-empty array"));
+                .toThrow((i) -> invalidSchema("type must be a string or a non-empty array", i))
+                .test(declaredTypes);
     }
 
     private void assertUnique(List<String> declaredTypes) {
         expect(Predicates.<String>unique())
-                .test(declaredTypes, invalidSchema("types must be unique"));
+                .toThrow((i) -> invalidSchema("types must be unique", i))
+                .test(declaredTypes);
     }
 }

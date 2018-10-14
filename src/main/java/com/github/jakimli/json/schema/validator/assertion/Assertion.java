@@ -7,9 +7,13 @@ import java.util.function.Predicate;
 public interface Assertion<T> {
     void asserts(T instance) throws SchemaViolatedException;
 
+    interface ExceptionSupplier {
+        RuntimeException get(Object instance);
+    }
+
     class AssertionBuilder<T> {
         private Predicate<T> predicate;
-        private String message;
+        private ExceptionSupplier exception;
 
         private AssertionBuilder(Predicate<T> predicate) {
             this.predicate = predicate;
@@ -19,16 +23,16 @@ public interface Assertion<T> {
             return new AssertionBuilder<>(predicate);
         }
 
-        AssertionBuilder<T> message(String message) {
-            this.message = message;
+        public AssertionBuilder<T> toThrow(ExceptionSupplier exception) {
+            this.exception = exception;
             return this;
         }
 
-        void test(T instance) {
+        public void test(T instance) {
             if (predicate.test(instance)) {
                 return;
             }
-            throw new SchemaViolatedException(this.message, instance);
+            throw exception.get(instance);
         }
 
         public void test(T instance, RuntimeException exception) {
