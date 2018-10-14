@@ -55,4 +55,14 @@ public class EnumKeywordTest extends TestBase {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void should_validate_object_in_enum() throws Exception {
+        String schema = readFile("keyword/enum/object.schema.json");
+        String instance = readFile("keyword/enum/object.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("must be one of values in enum: [{\"name\":\"monica\"}, {\"name\":\"chandler\"}]");
+        validate(schema, instance);
+    }
 }
