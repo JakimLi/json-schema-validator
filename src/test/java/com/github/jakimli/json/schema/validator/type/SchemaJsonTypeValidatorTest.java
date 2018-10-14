@@ -1,18 +1,14 @@
 package com.github.jakimli.json.schema.validator.type;
 
+import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class SchemaJsonTypeValidatorTest {
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
+public class SchemaJsonTypeValidatorTest extends TestBase {
 
     @Test
     public void validate_not_null_type() throws Exception {
@@ -124,7 +120,7 @@ public class SchemaJsonTypeValidatorTest {
         exception.expectMessage("expected one of type: [ARRAY], got: {\"not\":\"array\"}");
         validate(schema, instance);
     }
-    
+
     @Test
     public void validate_array_in_object() throws Exception {
         String schema = readFile("type/array/nested/schema.json");

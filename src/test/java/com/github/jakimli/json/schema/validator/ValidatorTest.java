@@ -1,17 +1,12 @@
 package com.github.jakimli.json.schema.validator;
 
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class ValidatorTest {
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
+public class ValidatorTest extends TestBase {
 
     @Test
     public void always_valid() throws Exception {

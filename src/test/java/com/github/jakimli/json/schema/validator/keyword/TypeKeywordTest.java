@@ -1,20 +1,16 @@
 package com.github.jakimli.json.schema.validator.keyword;
 
+import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.InvalidKeywordException;
 import com.github.jakimli.json.schema.validator.exception.InvalidSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class KeywordTest {
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
+public class TypeKeywordTest extends TestBase {
 
     @Test
     public void validate_multiple_type() throws Exception {
