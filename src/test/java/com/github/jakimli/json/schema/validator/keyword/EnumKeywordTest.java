@@ -37,4 +37,14 @@ public class EnumKeywordTest extends TestBase {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void should_validate_when_enum_is_empty_array() throws Exception {
+        String schema = readFile("keyword/enum/empty.array.schema.json");
+        String instance = readFile("keyword/enum/valid.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("must be one of values in enum: [], got: monica");
+        validate(schema, instance);
+    }
 }
