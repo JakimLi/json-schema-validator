@@ -8,7 +8,7 @@ import java.util.List;
 import static com.github.jakimli.json.schema.validator.exception.InvalidKeywordException.invalidKeywordException;
 import static java.util.Arrays.stream;
 
-public enum Type {
+public enum JsonType {
 
     OBJECT("object", ObjectType::new),
     NULL("null", NullType::new),
@@ -21,13 +21,13 @@ public enum Type {
     private String keyword;
     private Factory factory;
 
-    Type(String keyword, Factory factory) {
+    JsonType(String keyword, Factory factory) {
         this.keyword = keyword;
         this.factory = factory;
     }
 
-    public static Type typeOf(String keyword) {
-        return stream(Type.values())
+    public static JsonType typeOf(String keyword) {
+        return stream(JsonType.values())
                 .filter(type -> type.keyword.equals(keyword))
                 .findFirst()
                 .orElseThrow(() -> invalidKeywordException(keyword));

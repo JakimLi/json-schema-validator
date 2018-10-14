@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.github.jakimli.json.schema.validator.assertion.Assertions.objectType;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 
 class ObjectType extends SchemaType {
@@ -18,7 +17,6 @@ class ObjectType extends SchemaType {
 
     @Override
     void configure() {
-        add(validation(objectType()));
         properties();
     }
 

@@ -2,14 +2,15 @@ package com.github.jakimli.json.schema.validator;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
-import com.github.jakimli.json.schema.validator.type.Type.JsonSchema;
+import com.github.jakimli.json.schema.validator.keywords.Type;
+import com.github.jakimli.json.schema.validator.type.JsonType.JsonSchema;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
-import static com.github.jakimli.json.schema.validator.type.Type.typeOf;
+import static com.github.jakimli.json.schema.validator.type.JsonType.typeOf;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class Schema implements JsonSchema {
@@ -24,8 +25,10 @@ public class Schema implements JsonSchema {
 
     @Override
     public List<Validation> validations() {
+        List<Validation> validations = newArrayList();
+
         if (alwaysTrue(schema)) {
-            return newArrayList();
+            return validations;
         }
 
         if (alwaysFalse(schema)) {
@@ -39,9 +42,10 @@ public class Schema implements JsonSchema {
         JSONObject schema = (JSONObject) this.schema;
         Object type = schema.get("type");
 
-        return typeOf((String) type)
-                .schema(location, schema)
-                .validations();
+        validations.addAll(new Type().validations(this.location, type));
+        validations.addAll(typeOf((String) type).schema(location, schema).validations());
+
+        return validations;
     }
 
     private static boolean alwaysTrue(Object schema) {

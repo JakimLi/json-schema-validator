@@ -41,7 +41,7 @@ public class ValidatorTest {
     @Test
     public void should_validate_invalid_object() throws Exception {
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type integer, got: not integer");
+        exception.expectMessage("expected one of type: [INTEGER], got: not integer");
 
         String schema = readFile("product.schema.json");
         String instance = readFile("invalid.product.json");

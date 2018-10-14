@@ -2,8 +2,6 @@ package com.github.jakimli.json.schema.validator.type;
 
 import com.alibaba.fastjson.JSONObject;
 
-import static com.github.jakimli.json.schema.validator.assertion.Assertions.arrayType;
-
 class ArrayType extends SchemaType {
 
     ArrayType(String location, JSONObject schema) {
@@ -12,6 +10,5 @@ class ArrayType extends SchemaType {
 
     @Override
     void configure() {
-        add(validation(arrayType()));
     }
 }

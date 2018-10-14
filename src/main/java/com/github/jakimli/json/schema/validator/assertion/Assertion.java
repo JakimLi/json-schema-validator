@@ -4,31 +4,38 @@ import com.github.jakimli.json.schema.validator.exception.SchemaViolatedExceptio
 
 import java.util.function.Predicate;
 
-public interface Assertion {
-    void asserts(Object instance) throws SchemaViolatedException;
+public interface Assertion<T> {
+    void asserts(T instance) throws SchemaViolatedException;
 
-    class Builder {
-        private Predicate<Object> predicate;
+    class AssertionBuilder<T> {
+        private Predicate<T> predicate;
         private String message;
 
-        Builder(Predicate<Object> predicate) {
+        private AssertionBuilder(Predicate<T> predicate) {
             this.predicate = predicate;
         }
 
-        static Builder expect(Predicate<Object> predicate) {
-            return new Builder(predicate);
+        public static <T> AssertionBuilder<T> expect(Predicate<T> predicate) {
+            return new AssertionBuilder<>(predicate);
         }
 
-        Builder message(String message) {
+        AssertionBuilder<T> message(String message) {
             this.message = message;
             return this;
         }
 
-        void test(Object instance) {
+        void test(T instance) {
             if (predicate.test(instance)) {
                 return;
             }
             throw new SchemaViolatedException(this.message, instance);
+        }
+
+        public void test(T instance, RuntimeException exception) {
+            if (predicate.test(instance)) {
+                return;
+            }
+            throw exception;
         }
     }
 }

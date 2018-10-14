@@ -1,54 +1,58 @@
 package com.github.jakimli.json.schema.validator.assertion;
 
-import com.alibaba.fastjson.JSONObject;
+import com.github.jakimli.json.schema.validator.predicates.Predicates;
+import com.github.jakimli.json.schema.validator.type.JsonType;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
-import static com.github.jakimli.json.schema.validator.assertion.Assertion.Builder.expect;
+import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfArray;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBigDecimal;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBoolean;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfInteger;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.or;
+import static java.util.stream.Collectors.toList;
 
 public class Assertions {
 
-    public static Assertion objectType() {
-        return instance -> expect(it -> it instanceof JSONObject)
-                .message("expected type object")
-                .test(instance);
+    public static Assertion<Object> objectType() {
+        return expect(instanceOfObject()).message("expected type object")::test;
     }
 
-    public static Assertion stringType() {
-        return instance -> expect(it -> it instanceof String)
-                .message("expected type string")
-                .test(instance);
+    public static Assertion<Object> stringType() {
+        return expect(instanceOfString()).message("expected type string")::test;
     }
 
-    public static Assertion integerType() {
-        return instance -> expect(it -> it instanceof Integer)
-                .message("expected type integer")
-                .test(instance);
+    public static Assertion<Object> integerType() {
+        return expect(instanceOfInteger()).message("expected type integer")::test;
     }
 
-    public static Assertion numberType() {
-        return instance -> expect(it -> it instanceof BigDecimal)
-                .message("expected type number")
-                .test(instance);
+    public static Assertion<Object> numberType() {
+        return expect(instanceOfBigDecimal()).message("expected type number")::test;
     }
 
-    public static Assertion arrayType() {
-        return instance -> expect(it -> it instanceof List)
-                .message("expected type array")
-                .test(instance);
+    public static Assertion<Object> arrayType() {
+        return expect(instanceOfArray()).message("expected type array")::test;
     }
 
-    public static Assertion nullType() {
-        return instance -> expect(Objects::isNull)
-                .message("expected null")
-                .test(instance);
+    public static Assertion<Object> nullType() {
+        return expect(Objects::isNull).message("expected null")::test;
     }
 
-    public static Assertion booleanType() {
-        return instance -> expect(it -> it instanceof Boolean)
-                .message("expected type boolean")
-                .test(instance);
+    public static Assertion<Object> booleanType() {
+        return expect(instanceOfBoolean()).message("expected type boolean")::test;
     }
+
+    public static Assertion<Object> oneOfTypes(List<JsonType> types) {
+        return expect(or(predicates(types))).message("expected one of type: " + types)::test;
+    }
+
+    private static List<Predicate<Object>> predicates(List<JsonType> types) {
+        return types.stream().map(Predicates::byType).collect(toList());
+    }
+
 }

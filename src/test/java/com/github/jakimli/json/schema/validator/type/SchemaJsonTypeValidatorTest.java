@@ -9,7 +9,7 @@ import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.Validator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class SchemaTypeValidatorTest {
+public class SchemaJsonTypeValidatorTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -21,7 +21,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/null/invalid.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected null, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [NULL], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -39,7 +39,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/boolean/invalid.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type boolean, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [BOOLEAN], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -57,7 +57,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/object/boolean.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type object, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [OBJECT], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -67,7 +67,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/object/invalid.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected null, got: " + "wrong");
+        exception.expectMessage("expected one of type: [NULL], got: " + "wrong");
         validate(schema, instance);
     }
 
@@ -85,7 +85,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/integer/array.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type integer, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [INTEGER], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -103,7 +103,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/array/object.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type array, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [ARRAY], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -121,7 +121,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/array/nested/object.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type array, got: {\"not\":\"array\"}");
+        exception.expectMessage("expected one of type: [ARRAY], got: {\"not\":\"array\"}");
         validate(schema, instance);
     }
     
@@ -139,7 +139,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/number/integer.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type number, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [NUMBER], got: " + parse(instance));
         validate(schema, instance);
     }
 
@@ -157,7 +157,7 @@ public class SchemaTypeValidatorTest {
         String instance = readFile("type/string/integer.json");
 
         exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected type string, got: " + parse(instance));
+        exception.expectMessage("expected one of type: [STRING], got: " + parse(instance));
         validate(schema, instance);
     }
 
