@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
-import static com.github.jakimli.json.schema.validator.assertion.Assertions.oneOfTypes;
+import static com.github.jakimli.json.schema.validator.assertion.Assertions.anyOfTypes;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 import static com.github.jakimli.json.schema.validator.type.JsonType.typeOf;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
@@ -20,7 +20,7 @@ public class Type implements Keyword<Object> {
 
     @Override
     public List<Validation> validations(String location, Object value) {
-        return newArrayList(assertion(oneOfTypes(types(value))).at(location));
+        return newArrayList(assertion(anyOfTypes(types(value))).at(location));
     }
 
     public List<JsonType> types(Object value) {

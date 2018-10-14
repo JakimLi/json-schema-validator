@@ -47,7 +47,7 @@ public class Assertions {
         return expect(instanceOfBoolean()).message("expected type boolean")::test;
     }
 
-    public static Assertion<Object> oneOfTypes(List<JsonType> types) {
+    public static Assertion<Object> anyOfTypes(List<JsonType> types) {
         return expect(or(predicates(types))).message("expected one of type: " + types)::test;
     }
 
