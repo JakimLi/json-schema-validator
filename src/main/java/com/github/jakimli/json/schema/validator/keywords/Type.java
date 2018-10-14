@@ -33,7 +33,7 @@ public class Type implements Keyword<Object> {
             List<String> declaredTypes = ((JSONArray) value).toJavaList(String.class);
 
             expect(Predicates.<String>unique())
-                    .test(declaredTypes, invalidSchema("type must be unique"));
+                    .test(declaredTypes, invalidSchema("types must be unique"));
 
             types.addAll(declaredTypes.stream().map(JsonType::typeOf).collect(Collectors.toList()));
         }

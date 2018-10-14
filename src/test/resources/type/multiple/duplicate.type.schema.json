@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://github.com/jakimli/multiple.schema.json",
+  "title": "multiple type",
+  "description": "multiple type",
+  "type": ["string", "string", "null", "boolean", "number", "object"]
+}

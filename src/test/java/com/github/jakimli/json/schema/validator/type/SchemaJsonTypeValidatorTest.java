@@ -1,5 +1,6 @@
 package com.github.jakimli.json.schema.validator.type;
 
+import com.github.jakimli.json.schema.validator.exception.InvalidSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -199,6 +200,16 @@ public class SchemaJsonTypeValidatorTest {
 
         exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected one of type: [STRING, INTEGER, NULL, BOOLEAN, NUMBER, OBJECT], got: " + parse(instance));
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_duplicate_type_in_array() throws Exception {
+        String schema = readFile("type/multiple/duplicate.type.schema.json");
+        String instance = readFile("type/multiple/array.json");
+
+        exception.expect(InvalidSchemaException.class);
+        exception.expectMessage("types must be unique");
         validate(schema, instance);
     }
 }
