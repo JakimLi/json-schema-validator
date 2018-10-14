@@ -25,9 +25,7 @@ public class Schema extends SchemaType implements JsonSchema {
 
         add(TYPE.validations(this));
 
-        Type keyword = (Type) byKeyword("type").get();
-//        add(keyword.validations(this.location, type));
-        add(byType(keyword.types(type), this.schema));
+        add(byType(((Type) byKeyword("type").get()).types(type), this.schema));
     }
 
     private List<Validation> byType(List<JsonType> types, JSONObject schema) {
