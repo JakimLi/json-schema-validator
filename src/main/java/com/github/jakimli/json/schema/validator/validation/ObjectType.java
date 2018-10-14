@@ -1,7 +1,6 @@
 package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.jakimli.json.schema.validator.Schema;
 
 import java.util.Collection;
 import java.util.Set;

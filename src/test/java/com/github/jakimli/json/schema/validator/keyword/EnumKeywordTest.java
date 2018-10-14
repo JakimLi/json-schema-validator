@@ -4,7 +4,7 @@ import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Test;
 
-import static com.github.jakimli.json.schema.validator.Validator.validate;
+import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
 public class EnumKeywordTest extends TestBase {

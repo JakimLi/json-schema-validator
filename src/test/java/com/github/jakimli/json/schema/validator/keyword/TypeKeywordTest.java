@@ -7,7 +7,7 @@ import com.github.jakimli.json.schema.validator.exception.SchemaViolatedExceptio
 import org.junit.Test;
 
 import static com.alibaba.fastjson.JSON.parse;
-import static com.github.jakimli.json.schema.validator.Validator.validate;
+import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
 public class TypeKeywordTest extends TestBase {

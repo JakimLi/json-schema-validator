@@ -1,11 +1,12 @@
 package com.github.jakimli.json.schema.validator;
 
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
+import com.github.jakimli.json.schema.validator.validation.Schema;
 
 import static com.alibaba.fastjson.JSON.parse;
 import static com.alibaba.fastjson.JSON.parseObject;
 
-public class Validator {
+public class SchemaValidator {
     public static void validate(String jsonSchema, String jsonInstance) {
         if (alwaysTrue(jsonSchema)) {
             return;
