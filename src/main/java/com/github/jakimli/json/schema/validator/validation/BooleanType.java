@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator.validation;
 
-class BooleanType extends Validator {
+class BooleanType extends Type {
     BooleanType(Schema schema) {
         super(schema);
     }

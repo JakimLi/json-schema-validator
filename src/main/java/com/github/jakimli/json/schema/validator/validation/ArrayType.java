@@ -1,6 +1,6 @@
 package com.github.jakimli.json.schema.validator.validation;
 
-class ArrayType extends Validator {
+class ArrayType extends Type {
 
     ArrayType(Schema schema) {
         super(schema);

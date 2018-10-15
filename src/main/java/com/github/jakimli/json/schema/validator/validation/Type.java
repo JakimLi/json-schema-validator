@@ -10,18 +10,18 @@ import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
 import static com.google.common.collect.Lists.newArrayList;
 
-public abstract class Validator implements JsonType.Validator {
+public abstract class Type implements JsonType.Validator {
     final String location;
     protected final JSONObject schema;
 
     private List<Validation> validations = newArrayList();
 
-    protected Validator(String location, JSONObject schema) {
+    protected Type(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
     }
 
-    protected Validator(Schema schema) {
+    protected Type(Schema schema) {
         this.location = schema.location;
         this.schema = schema.schema;
     }

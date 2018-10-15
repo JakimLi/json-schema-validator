@@ -48,7 +48,7 @@ public enum JsonType {
     }
 
     public Predicate<Object> predicate() {
-        Map<JsonType, Predicate<Object>> predicates = ImmutableMap.<JsonType, Predicate<Object>>builder()
+        return ((Map<JsonType, Predicate<Object>>) ImmutableMap.<JsonType, Predicate<Object>>builder()
                 .put(ARRAY, instanceOfArray())
                 .put(STRING, instanceOfString())
                 .put(INTEGER, instanceOfInteger())
@@ -56,12 +56,12 @@ public enum JsonType {
                 .put(OBJECT, instanceOfObject())
                 .put(BOOLEAN, instanceOfBoolean())
                 .put(NUMBER, or(instanceOfBigDecimal(), instanceOfInteger()))
-                .build();
-        return predicates.get(this);
+                .build())
+                .get(this);
     }
 
-    public Validator validator(Schema schemaNew) {
-        return this.factory.create(schemaNew);
+    public Validator validator(Schema schema) {
+        return this.factory.create(schema);
     }
 
     interface Factory {

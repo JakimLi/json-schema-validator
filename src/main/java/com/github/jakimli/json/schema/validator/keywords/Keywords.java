@@ -1,7 +1,7 @@
 package com.github.jakimli.json.schema.validator.keywords;
 
 import com.github.jakimli.json.schema.validator.validation.Validation;
-import com.github.jakimli.json.schema.validator.validation.Validator;
+import com.github.jakimli.json.schema.validator.validation.Type;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -10,7 +10,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public enum Keywords {
 
-    TYPE("type", Type::new),
+    TYPE("type", com.github.jakimli.json.schema.validator.keywords.Type::new),
     ENUM("enum", Enum::new),
     CONST("const", Const::new),
     PROPERTIES("properties", Properties::new);
@@ -23,7 +23,7 @@ public enum Keywords {
         this.supplier = supplier;
     }
 
-    public List<Validation> validate(Validator schema) {
+    public List<Validation> validate(Type schema) {
         Object element = schema.sub(word);
 
         if (element == null) {

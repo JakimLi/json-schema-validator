@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Schema extends Validator implements JsonType.Validator {
+public class Schema extends Type implements JsonType.Validator {
     public Schema(String location, JSONObject schema) {
         super(location, schema);
     }
