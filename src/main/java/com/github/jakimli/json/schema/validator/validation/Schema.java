@@ -7,8 +7,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
-
 public class Schema extends Validator implements JsonType.Validator {
     public Schema(String location, JSONObject schema) {
         super(location, schema);
@@ -16,7 +14,6 @@ public class Schema extends Validator implements JsonType.Validator {
 
     @Override
     protected void configure() {
-        add(TYPE.validate(this));
         add(subSchema());
     }
 

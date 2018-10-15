@@ -6,6 +6,7 @@ import java.util.List;
 
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.CONST;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
 import static com.google.common.collect.Lists.newArrayList;
 
 public abstract class Validator implements JsonType.Validator {
@@ -28,6 +29,7 @@ public abstract class Validator implements JsonType.Validator {
     public List<Validation> validate() {
         add(ENUM.validate(this));
         add(CONST.validate(this));
+        add(TYPE.validate(this));
 
         configure();
         return this.validations;
