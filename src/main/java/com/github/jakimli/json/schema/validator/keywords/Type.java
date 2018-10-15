@@ -16,7 +16,7 @@ import static com.github.jakimli.json.schema.validator.validation.JsonType.typeO
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
 
-public class Type implements Keyword<Object> {
+public class Type implements Keyword {
 
     @Override
     public List<Validation> validations(String location, Object value) {

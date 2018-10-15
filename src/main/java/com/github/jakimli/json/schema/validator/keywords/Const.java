@@ -8,7 +8,7 @@ import static com.github.jakimli.json.schema.validator.assertion.Assertions.must
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
 
-public class Const implements Keyword<Object> {
+public class Const implements Keyword {
 
     @Override
     public List<Validation> validations(String location, Object value) {

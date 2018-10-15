@@ -12,18 +12,17 @@ public enum Keywords {
 
     TYPE("type", Type::new),
     ENUM("enum", Enum::new),
-    CONST("const", Const::new)
-    ;
+    CONST("const", Const::new);
 
     private String word;
-    private final Supplier<Keyword<Object>> supplier;
+    private final Supplier<Keyword> supplier;
 
-    Keywords(String word, Supplier<Keyword<Object>> supplier) {
+    Keywords(String word, Supplier<Keyword> supplier) {
         this.word = word;
         this.supplier = supplier;
     }
 
-    public Keyword<Object> get() {
+    public Keyword get() {
         return supplier.get();
     }
 

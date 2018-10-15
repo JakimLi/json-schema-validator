@@ -4,7 +4,7 @@ import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
 
-public interface Keyword<T> {
+public interface Keyword {
 
-    List<Validation> validations(String location, T value);
+    List<Validation> validations(String location, Object value);
 }
