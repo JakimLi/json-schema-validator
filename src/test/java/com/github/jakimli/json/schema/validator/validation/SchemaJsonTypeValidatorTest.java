@@ -134,8 +134,6 @@ public class SchemaJsonTypeValidatorTest extends TestBase {
         String schema = readFile("type/number/schema.json");
         String instance = readFile("type/number/integer.json");
 
-        exception.expect(SchemaViolatedException.class);
-        exception.expectMessage("expected one of type: [NUMBER], got: " + parse(instance));
         validate(schema, instance);
     }
 

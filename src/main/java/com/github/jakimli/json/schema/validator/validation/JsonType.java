@@ -15,6 +15,7 @@ import static com.github.jakimli.json.schema.validator.predicates.Predicates.ins
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfInteger;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.or;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -55,7 +56,7 @@ public enum JsonType {
                 .put(NULL, Objects::isNull)
                 .put(OBJECT, instanceOfObject())
                 .put(BOOLEAN, instanceOfBoolean())
-                .put(NUMBER, instanceOfBigDecimal())
+                .put(NUMBER, or(instanceOfBigDecimal(), instanceOfInteger()))
                 .build();
         return predicates.get(this);
     }
