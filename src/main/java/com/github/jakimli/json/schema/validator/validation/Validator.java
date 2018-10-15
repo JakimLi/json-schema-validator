@@ -19,6 +19,11 @@ public abstract class Validator implements JsonType.Validator {
         this.schema = schema;
     }
 
+    protected Validator(Schema schema) {
+        this.location = schema.location;
+        this.schema = schema.schema;
+    }
+
     @Override
     public List<Validation> validate() {
         add(ENUM.validate(this));
@@ -47,5 +52,9 @@ public abstract class Validator implements JsonType.Validator {
 
     public Object sub(String word) {
         return this.schema.get(word);
+    }
+
+    protected JSONObject schema() {
+        return this.schema;
     }
 }

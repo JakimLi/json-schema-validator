@@ -10,8 +10,8 @@ import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaEx
 
 class ObjectType extends Validator {
 
-    ObjectType(String location, JSONObject schema) {
-        super(location, schema);
+    ObjectType(Schema schema) {
+        super(schema);
     }
 
     @Override

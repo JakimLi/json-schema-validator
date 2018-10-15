@@ -1,6 +1,5 @@
 package com.github.jakimli.json.schema.validator.validation;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.List;
@@ -61,12 +60,12 @@ public enum JsonType {
         return predicates.get(this);
     }
 
-    public Validator validator(String location, JSONObject schema) {
-        return this.factory.create(location, schema);
+    public Validator validator(Schema schemaNew) {
+        return this.factory.create(schemaNew);
     }
 
     interface Factory {
-        Validator create(String location, JSONObject schema);
+        Validator create(Schema schema);
     }
 
     public interface Validator {

@@ -17,12 +17,12 @@ public class Schema extends Validator implements JsonType.Validator {
     @Override
     protected void configure() {
         add(TYPE.validate(this));
-        add(subSchema(this.schema));
+        add(subSchema());
     }
 
-    private List<Validation> subSchema(JSONObject schema) {
+    private List<Validation> subSchema() {
         return Arrays.stream(JsonType.values())
-                .map(t -> t.validator(location, schema))
+                .map(t -> t.validator(this))
                 .map(JsonType.Validator::validate)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
