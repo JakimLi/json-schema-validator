@@ -12,7 +12,8 @@ public enum Keywords {
 
     TYPE("type", Type::new),
     ENUM("enum", Enum::new),
-    CONST("const", Const::new);
+    CONST("const", Const::new),
+    PROPERTIES("properties", Properties::new);
 
     private String word;
     private final Supplier<Keyword> supplier;
