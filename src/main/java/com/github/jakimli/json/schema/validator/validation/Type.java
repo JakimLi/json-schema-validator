@@ -38,10 +38,6 @@ public abstract class Type implements JsonType.Validator {
 
     protected abstract void keywords();
 
-    void add(Validation... validations) {
-        this.validations.addAll(newArrayList(validations));
-    }
-
     void add(List<Validation> validations) {
         if (validations == null) {
             return;
