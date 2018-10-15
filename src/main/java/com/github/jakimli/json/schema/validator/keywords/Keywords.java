@@ -22,10 +22,6 @@ public enum Keywords {
         this.supplier = supplier;
     }
 
-    public Keyword get() {
-        return supplier.get();
-    }
-
     public List<Validation> validate(Validator schema) {
         Object element = schema.sub(word);
 
@@ -33,10 +29,6 @@ public enum Keywords {
             return newArrayList();
         }
 
-        return this.get().validations(schema.location(), element);
-    }
-
-    public String word() {
-        return word;
+        return supplier.get().validations(schema.location(), element);
     }
 }
