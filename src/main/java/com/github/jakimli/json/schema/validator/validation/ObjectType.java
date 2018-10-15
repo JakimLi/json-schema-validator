@@ -10,6 +10,6 @@ class ObjectType extends Validator {
 
     @Override
     protected void configure() {
-        add(PROPERTIES.validate(this));
+        keyword(PROPERTIES);
     }
 }

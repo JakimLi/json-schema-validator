@@ -1,6 +1,7 @@
 package com.github.jakimli.json.schema.validator.validation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.jakimli.json.schema.validator.keywords.Keywords;
 
 import java.util.List;
 
@@ -27,9 +28,9 @@ public abstract class Validator implements JsonType.Validator {
 
     @Override
     public List<Validation> validate() {
-        add(ENUM.validate(this));
-        add(CONST.validate(this));
-        add(TYPE.validate(this));
+        keyword(ENUM);
+        keyword(CONST);
+        keyword(TYPE);
 
         configure();
         return this.validations;
@@ -54,5 +55,9 @@ public abstract class Validator implements JsonType.Validator {
 
     public Object sub(String word) {
         return this.schema.get(word);
+    }
+
+    protected void keyword(Keywords keyword) {
+        add(keyword.validate(this));
     }
 }
