@@ -34,12 +34,5 @@ public interface Assertion<T> {
             }
             throw exception.get(instance);
         }
-
-        public void test(T instance, RuntimeException exception) {
-            if (predicate.test(instance)) {
-                return;
-            }
-            throw exception;
-        }
     }
 }
