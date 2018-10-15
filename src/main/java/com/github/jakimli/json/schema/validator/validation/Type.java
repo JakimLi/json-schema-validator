@@ -32,11 +32,11 @@ public abstract class Type implements JsonType.Validator {
         keyword(CONST);
         keyword(TYPE);
 
-        configure();
+        keywords();
         return this.validations;
     }
 
-    protected abstract void configure();
+    protected abstract void keywords();
 
     void add(Validation... validations) {
         this.validations.addAll(newArrayList(validations));

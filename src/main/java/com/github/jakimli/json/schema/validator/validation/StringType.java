@@ -7,6 +7,6 @@ class StringType extends Type {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
     }
 }

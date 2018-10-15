@@ -6,6 +6,6 @@ class NullType extends Type {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
     }
 }

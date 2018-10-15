@@ -6,6 +6,6 @@ class BooleanType extends Type {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
     }
 }

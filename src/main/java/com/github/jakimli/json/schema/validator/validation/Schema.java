@@ -13,7 +13,7 @@ public class Schema extends Type implements JsonType.Validator {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
         add(subSchema());
     }
 

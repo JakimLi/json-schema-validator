@@ -9,7 +9,7 @@ class ObjectType extends Type {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
         keyword(PROPERTIES);
     }
 }

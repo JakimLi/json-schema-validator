@@ -7,6 +7,6 @@ class IntegerType extends Type {
     }
 
     @Override
-    protected void configure() {
+    protected void keywords() {
     }
 }
