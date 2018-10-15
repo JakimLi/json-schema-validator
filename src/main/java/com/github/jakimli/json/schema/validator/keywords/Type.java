@@ -23,7 +23,7 @@ public class Type implements Keyword<Object> {
         return newArrayList(assertion(anyOfTypes(types(value))).at(location));
     }
 
-    public List<JsonType> types(Object value) {
+    private List<JsonType> types(Object value) {
         List<JsonType> types = newArrayList();
 
         if (value instanceof String) {
