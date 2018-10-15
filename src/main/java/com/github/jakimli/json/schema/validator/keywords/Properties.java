@@ -6,10 +6,10 @@ import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
+import static java.util.stream.Collectors.toList;
 
 public class Properties implements Keyword {
     @Override
@@ -19,17 +19,14 @@ public class Properties implements Keyword {
             throw invalidSchema("properties must be json object: " + properties);
         }
 
-        JSONObject propertiesSchema = (JSONObject) properties;
-        Set<String> keys = propertiesSchema.keySet();
-
-        return keys.stream()
-                .map(key -> schema(key, propertiesSchema, location))
+        return ((JSONObject) properties).entrySet().stream()
+                .map(entry -> schema(location, entry))
                 .map(Schema::validate)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    private Schema schema(String key, JSONObject schema, String location) {
-        return new Schema(location + "." + key, (JSONObject) schema.get(key));
+    private Schema schema(String location, Map.Entry<String, Object> entry) {
+        return new Schema(location + "." + entry.getKey(), (JSONObject) entry.getValue());
     }
 }
