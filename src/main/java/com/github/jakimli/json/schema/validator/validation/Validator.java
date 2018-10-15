@@ -9,7 +9,7 @@ import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.google.common.collect.Lists.newArrayList;
 
 public abstract class Validator implements JsonType.Validator {
-    protected final String location;
+    final String location;
     protected final JSONObject schema;
 
     private List<Validation> validations = newArrayList();
@@ -52,9 +52,5 @@ public abstract class Validator implements JsonType.Validator {
 
     public Object sub(String word) {
         return this.schema.get(word);
-    }
-
-    protected JSONObject schema() {
-        return this.schema;
     }
 }
