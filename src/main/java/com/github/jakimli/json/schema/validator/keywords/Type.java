@@ -6,10 +6,8 @@ import com.github.jakimli.json.schema.validator.validation.JsonType;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.anyOfTypes;
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
 import static com.github.jakimli.json.schema.validator.validation.JsonType.typeOf;
@@ -40,15 +38,15 @@ public class Type implements Keyword {
         return types;
     }
 
-    private void assertNotEmpty(List<String> declaredTypes) {
-        expect((Predicate<List<String>>) strings -> strings.size() > 0)
-                .toThrow((i) -> invalidSchema("type must be a string or a non-empty array", i))
-                .test(declaredTypes);
+    private void assertNotEmpty(List<String> types) {
+        if (types.size() <= 0) {
+            throw invalidSchema("type must be a string or a non-empty array", types);
+        }
     }
 
-    private void assertUnique(List<String> declaredTypes) {
-        expect(Predicates.<String>unique())
-                .toThrow((i) -> invalidSchema("types must be unique", i))
-                .test(declaredTypes);
+    private void assertUnique(List<String> types) {
+        if (!Predicates.<String>unique().test(types)) {
+            throw invalidSchema("types must be unique", types);
+        }
     }
 }
