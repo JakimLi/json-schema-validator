@@ -16,11 +16,11 @@ public class MultipleOf implements Keyword {
     @Override
     public List<Validation> validate(String location, Object schema) {
 
-        if (!(schema instanceof Integer) && !(schema instanceof BigDecimal)) {
+        if (!integer(schema) && !notDecimal(schema)) {
             throw badSchema("multipleOf must to be numeric", schema);
         }
 
-        if (toDecimal(schema).compareTo(ZERO) < 0) {
+        if (lessThanZero(schema)) {
             throw badSchema("multipleOf must to be greater than 0", schema);
         }
 
@@ -36,10 +36,19 @@ public class MultipleOf implements Keyword {
         }).at(location));
     }
 
+    private boolean notDecimal(Object schema) {
+        return schema instanceof BigDecimal;
+    }
+
+    private boolean integer(Object schema) {
+        return schema instanceof Integer;
+    }
+
+    private boolean lessThanZero(Object schema) {
+        return toDecimal(schema).compareTo(ZERO) < 0;
+    }
+
     private BigDecimal toDecimal(Object value) {
-        if (value instanceof Integer) {
-            return BigDecimal.valueOf((Integer) value);
-        }
-        return (BigDecimal) value;
+        return integer(value) ? BigDecimal.valueOf((Integer) value) : (BigDecimal) value;
     }
 }
