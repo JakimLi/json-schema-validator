@@ -8,9 +8,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static java.math.RoundingMode.UNNECESSARY;
 import static java.util.Arrays.stream;
 
 public class Predicates {
+
+
+    public static Predicate<Integer> multipleOf(Integer integer) {
+        return t -> t % integer == 0;
+    }
+
+    public static Predicate<BigDecimal> multipleOf(BigDecimal decimal) {
+        return t -> t.divide(decimal, UNNECESSARY).stripTrailingZeros().scale() <= 0;
+    }
 
     public static <T> Predicate<T> oneOf(List<T> objects) {
         return t -> objects.stream().anyMatch(o -> o.equals(t));
