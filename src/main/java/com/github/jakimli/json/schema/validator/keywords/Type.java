@@ -17,7 +17,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class Type implements Keyword {
 
     @Override
-    public List<Validation> validations(String location, Object value) {
+    public List<Validation> validate(String location, Object value) {
         return newArrayList(assertion(anyOfTypes(types(value))).at(location));
     }
 

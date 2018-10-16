@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Properties implements Keyword {
     @Override
-    public List<Validation> validations(String location, Object properties) {
+    public List<Validation> validate(String location, Object properties) {
 
         if (!instanceOfJSONObject().test(properties)) {
             throw badSchema("properties must be json object: " + properties);

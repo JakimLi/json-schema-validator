@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Keyword {
 
-    List<Validation> validations(String location, Object value);
+    List<Validation> validate(String location, Object value);
 }

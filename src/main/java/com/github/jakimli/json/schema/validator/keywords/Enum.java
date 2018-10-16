@@ -14,7 +14,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class Enum implements Keyword {
 
     @Override
-    public List<Validation> validations(String location, Object value) {
+    public List<Validation> validate(String location, Object value) {
         if (!instanceOfArray().test(value)) {
             throw badSchema("expected type array", value);
         }

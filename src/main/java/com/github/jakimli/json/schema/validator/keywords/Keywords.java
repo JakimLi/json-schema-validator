@@ -30,6 +30,6 @@ public enum Keywords {
             return newArrayList();
         }
 
-        return supplier.get().validations(schema.location(), element);
+        return supplier.get().validate(schema.location(), element);
     }
 }

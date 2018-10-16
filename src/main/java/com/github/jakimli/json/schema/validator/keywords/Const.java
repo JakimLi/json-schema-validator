@@ -11,7 +11,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class Const implements Keyword {
 
     @Override
-    public List<Validation> validations(String location, Object value) {
+    public List<Validation> validate(String location, Object value) {
         return newArrayList(assertion(mustBe(value)).at(location));
     }
 }
