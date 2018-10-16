@@ -32,16 +32,14 @@ public class Type implements JsonType.Validator {
 
     @Override
     public List<Validation> validate() {
-        keyword(ENUM);
-        keyword(CONST);
-        keyword(TYPE);
-
         keywords();
         return this.validations;
     }
 
     protected void keywords() {
-
+        keyword(ENUM);
+        keyword(CONST);
+        keyword(TYPE);
     };
 
     void add(List<Validation> validations) {
