@@ -1,6 +1,5 @@
 package com.github.jakimli.json.schema.validator.validation;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.jakimli.json.schema.validator.keywords.Keywords;
 
 import java.util.Collection;
@@ -11,24 +10,14 @@ import static com.github.jakimli.json.schema.validator.keywords.Keywords.CONST;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.stream.Stream.concat;
 
 public class Type implements JsonType.Validator {
-    final String location;
-    protected final JSONObject schema;
-
-    private List<Validation> validations = newArrayList();
+    private final Schema schema;
 
     private List<Keywords> keywords = newArrayList(ENUM, CONST, TYPE);
 
-    Type(String location, JSONObject schema) {
-        this.location = location;
-        this.schema = schema;
-    }
-
     private Type(Schema schema) {
-        this.location = schema.location;
-        this.schema = schema.schema;
+        this.schema = schema;
     }
 
     public static Type type(Schema schema) {
@@ -37,31 +26,22 @@ public class Type implements JsonType.Validator {
 
     @Override
     public List<Validation> validate() {
-        return concat(this.validations.stream(),
-                validateEachKeywords().stream())
-                .collect(Collectors.toList());
+        return validateByKeywords();
     }
 
-    private List<Validation> validateEachKeywords() {
+    private List<Validation> validateByKeywords() {
         return this.keywords.stream()
                 .map(k -> k.validate(this))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    void add(List<Validation> validations) {
-        if (validations == null) {
-            return;
-        }
-        this.validations.addAll(validations);
-    }
-
     public String location() {
-        return location;
+        return schema.location();
     }
 
     public Object sub(String word) {
-        return this.schema.get(word);
+        return schema.get(word);
     }
 
     Type keyword(Keywords keyword) {

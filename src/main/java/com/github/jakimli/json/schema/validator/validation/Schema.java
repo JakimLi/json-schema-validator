@@ -5,17 +5,27 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Schema extends Type implements JsonType.Validator {
+import static com.github.jakimli.json.schema.validator.validation.Type.type;
+import static com.google.common.collect.Lists.newArrayList;
+import static java.util.stream.Collectors.toList;
+
+public class Schema implements JsonType.Validator {
+
+    private final String location;
+    private final JSONObject schema;
+
     public Schema(String location, JSONObject schema) {
-        super(location, schema);
+        this.location = location;
+        this.schema = schema;
     }
 
     @Override
     public List<Validation> validate() {
-        add(subSchema());
-        return super.validate();
+        List<Validation> validations = newArrayList();
+        validations.addAll(type(this).validate());
+        validations.addAll(subSchema());
+        return validations;
     }
 
     private List<Validation> subSchema() {
@@ -23,6 +33,14 @@ public class Schema extends Type implements JsonType.Validator {
                 .map(t -> t.validator(this))
                 .map(JsonType.Validator::validate)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .collect(toList());
+    }
+
+    Object get(String word) {
+        return schema.get(word);
+    }
+
+    String location() {
+        return this.location;
     }
 }
