@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.invalidSchema;
+import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.badSchema;
 import static java.util.stream.Collectors.toList;
 
 public class Properties implements Keyword {
@@ -16,7 +16,7 @@ public class Properties implements Keyword {
     public List<Validation> validations(String location, Object properties) {
 
         if (!(properties instanceof JSONObject)) {
-            throw invalidSchema("properties must be json object: " + properties);
+            throw badSchema("properties must be json object: " + properties);
         }
 
         return ((JSONObject) properties).entrySet().stream()

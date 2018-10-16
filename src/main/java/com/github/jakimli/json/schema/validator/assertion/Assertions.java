@@ -7,14 +7,9 @@ import java.util.List;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
-import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfArray;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.or;
 
 public class Assertions {
-
-    public static Assertion<Object> arrayType(Assertion.ExceptionSupplier exception) {
-        return expect(instanceOfArray()).toThrow(exception)::test;
-    }
 
     public static Assertion<Object> oneOf(List<Object> objects) {
         return expect(Predicates.oneOf(objects))
