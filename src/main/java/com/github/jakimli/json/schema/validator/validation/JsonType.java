@@ -15,18 +15,25 @@ import static com.github.jakimli.json.schema.validator.predicates.Predicates.ins
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.or;
+import static com.github.jakimli.json.schema.validator.validation.Types.arrayType;
+import static com.github.jakimli.json.schema.validator.validation.Types.booleanType;
+import static com.github.jakimli.json.schema.validator.validation.Types.integerType;
+import static com.github.jakimli.json.schema.validator.validation.Types.nullType;
+import static com.github.jakimli.json.schema.validator.validation.Types.numberType;
+import static com.github.jakimli.json.schema.validator.validation.Types.objectType;
+import static com.github.jakimli.json.schema.validator.validation.Types.stringType;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 public enum JsonType {
 
-    OBJECT("object", ObjectType::new),
-    NULL("null", NullType::new),
-    BOOLEAN("boolean", BooleanType::new),
-    INTEGER("integer", IntegerType::new),
-    NUMBER("number", NumberType::new),
-    ARRAY("array", ArrayType::new),
-    STRING("string", StringType::new);
+    OBJECT("object", objectType()),
+    NULL("null", nullType()),
+    BOOLEAN("boolean", booleanType()),
+    INTEGER("integer", integerType()),
+    NUMBER("number", numberType()),
+    ARRAY("array", arrayType()),
+    STRING("string", stringType());
 
     private String keyword;
     private Factory factory;

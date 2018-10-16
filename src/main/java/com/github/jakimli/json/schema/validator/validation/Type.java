@@ -10,7 +10,7 @@ import static com.github.jakimli.json.schema.validator.keywords.Keywords.ENUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.TYPE;
 import static com.google.common.collect.Lists.newArrayList;
 
-public abstract class Type implements JsonType.Validator {
+public class Type implements JsonType.Validator {
     final String location;
     protected final JSONObject schema;
 
@@ -26,6 +26,10 @@ public abstract class Type implements JsonType.Validator {
         this.schema = schema.schema;
     }
 
+    public static Type type(Schema schema) {
+        return new Type(schema);
+    }
+
     @Override
     public List<Validation> validate() {
         keyword(ENUM);
@@ -36,7 +40,9 @@ public abstract class Type implements JsonType.Validator {
         return this.validations;
     }
 
-    protected abstract void keywords();
+    protected void keywords() {
+
+    };
 
     void add(List<Validation> validations) {
         if (validations == null) {
@@ -53,7 +59,8 @@ public abstract class Type implements JsonType.Validator {
         return this.schema.get(word);
     }
 
-    protected void keyword(Keywords keyword) {
+    protected Type keyword(Keywords keyword) {
         add(keyword.validate(this));
+        return this;
     }
 }
