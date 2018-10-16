@@ -26,10 +26,6 @@ public class MultipleOf implements Keyword {
 
         return newArrayList(assertion(instance -> {
 
-            if (bothInteger(schema, instance) && !divisible(schema, instance)) {
-                throw violated("expected to be multiple of: " + schema + ", got: " + instance);
-            }
-
             BigDecimal actual = toDecimal(instance);
             BigDecimal factor = toDecimal(schema);
 
@@ -38,14 +34,6 @@ public class MultipleOf implements Keyword {
             }
 
         }).at(location));
-    }
-
-    private boolean divisible(Object value, Object instance) {
-        return (Integer) instance % (Integer) value == 0;
-    }
-
-    private boolean bothInteger(Object value, Object instance) {
-        return instance instanceof Integer && value instanceof Integer;
     }
 
     private BigDecimal toDecimal(Object value) {
