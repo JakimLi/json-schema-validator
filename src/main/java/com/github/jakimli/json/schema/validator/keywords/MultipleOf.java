@@ -8,14 +8,14 @@ import java.util.List;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.math.RoundingMode.UNNECESSARY;
+import static java.math.BigDecimal.ZERO;
 
 public class MultipleOf implements Keyword {
 
     @Override
     public List<Validation> validate(String location, Object schema) {
         return newArrayList(assertion(instance -> {
-            
+
             if (bothInteger(schema, instance) && !divisible(schema, instance)) {
                 throw violated("expected to be multiple of: " + schema + ", got: " + instance);
             }
@@ -23,7 +23,7 @@ public class MultipleOf implements Keyword {
             BigDecimal actual = toDecimal(instance);
             BigDecimal factor = toDecimal(schema);
 
-            if (actual.divide(factor, UNNECESSARY).stripTrailingZeros().scale() > 0) {
+            if (actual.divideAndRemainder(factor)[1].compareTo(ZERO) > 0) {
                 throw violated("expected to be multiple of: " + factor + ", got: " + actual);
             }
 

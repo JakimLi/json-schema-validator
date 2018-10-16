@@ -13,7 +13,7 @@ public class MultipleOfTest extends TestBase {
     @Test
     public void validate_multiple_of_fail_integer() throws Exception {
         String schema = readFile("keyword/multipleOf/integer.schema.json");
-        String instance = readFile("keyword/multipleOf/invalid.json");
+        String instance = readFile("keyword/multipleOf/11.json");
 
         exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected to be multiple of: 10, got: 11");
@@ -53,6 +53,16 @@ public class MultipleOfTest extends TestBase {
 
         exception.expect(SchemaViolatedException.class);
         exception.expectMessage("expected to be multiple of: 10, got: 11.0");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void validate_integer_multiple_of_decimal() throws Exception {
+        String schema = readFile("keyword/multipleOf/decimal.schema.json");
+        String instance = readFile("keyword/multipleOf/11.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("expected to be multiple of: 10.0, got: 11");
         validate(schema, instance);
     }
 }
