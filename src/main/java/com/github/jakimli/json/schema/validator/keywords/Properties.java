@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.badSchema;
+import static com.github.jakimli.json.schema.validator.exception.BadSchemaException.badSchema;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfJSONObject;
 import static java.util.stream.Collectors.toList;
 

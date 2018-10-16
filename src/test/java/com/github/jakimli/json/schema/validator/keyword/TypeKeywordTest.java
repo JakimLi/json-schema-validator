@@ -2,7 +2,7 @@ package com.github.jakimli.json.schema.validator.keyword;
 
 import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.InvalidKeywordException;
-import com.github.jakimli.json.schema.validator.exception.InvalidSchemaException;
+import com.github.jakimli.json.schema.validator.exception.BadSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class TypeKeywordTest extends TestBase {
         String schema = readFile("keyword/type/duplicate.type.schema.json");
         String instance = readFile("keyword/type/string.json");
 
-        exception.expect(InvalidSchemaException.class);
+        exception.expect(BadSchemaException.class);
         exception.expectMessage("types must be unique");
         validate(schema, instance);
     }
@@ -60,7 +60,7 @@ public class TypeKeywordTest extends TestBase {
         String schema = readFile("keyword/type/empty.type.schema.json");
         String instance = readFile("keyword/type/string.json");
 
-        exception.expect(InvalidSchemaException.class);
+        exception.expect(BadSchemaException.class);
         exception.expectMessage("type must be a string or a non-empty array");
         validate(schema, instance);
     }

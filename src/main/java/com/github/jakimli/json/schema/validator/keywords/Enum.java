@@ -6,7 +6,7 @@ import com.github.jakimli.json.schema.validator.validation.Validation;
 import java.util.List;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.oneOf;
-import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.badSchema;
+import static com.github.jakimli.json.schema.validator.exception.BadSchemaException.badSchema;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfArray;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertions.anyOfTypes;
-import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.badSchema;
+import static com.github.jakimli.json.schema.validator.exception.BadSchemaException.badSchema;
 import static com.github.jakimli.json.schema.validator.validation.JsonType.typeOf;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
