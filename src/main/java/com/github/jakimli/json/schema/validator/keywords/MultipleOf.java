@@ -5,6 +5,7 @@ import com.github.jakimli.json.schema.validator.validation.Validation;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.github.jakimli.json.schema.validator.exception.BadSchemaException.badSchema;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
@@ -14,6 +15,11 @@ public class MultipleOf implements Keyword {
 
     @Override
     public List<Validation> validate(String location, Object schema) {
+
+        if (!(schema instanceof Integer) && !(schema instanceof BigDecimal)) {
+            throw badSchema("multipleOf has to be numeric", schema);
+        }
+
         return newArrayList(assertion(instance -> {
 
             if (bothInteger(schema, instance) && !divisible(schema, instance)) {

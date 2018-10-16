@@ -1,6 +1,7 @@
 package com.github.jakimli.json.schema.validator.keyword;
 
 import com.github.jakimli.json.schema.validator.TestBase;
+import com.github.jakimli.json.schema.validator.exception.BadSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Test;
 
@@ -79,6 +80,16 @@ public class MultipleOfTest extends TestBase {
         String schema = readFile("keyword/multipleOf/decimal.schema.json");
         String instance = readFile("keyword/multipleOf/20.json");
 
+        validate(schema, instance);
+    }
+
+    @Test
+    public void multiple_of_has_to_be_number_and_greater_than_0() throws Exception {
+        String schema = readFile("keyword/multipleOf/not_number.schema.json");
+        String instance = readFile("keyword/multipleOf/20.json");
+
+        exception.expect(BadSchemaException.class);
+        exception.expectMessage("multipleOf has to be numeric, got: string");
         validate(schema, instance);
     }
 }
