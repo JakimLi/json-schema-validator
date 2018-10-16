@@ -16,12 +16,12 @@ public class Type implements JsonType.Validator {
 
     private List<Validation> validations = newArrayList();
 
-    protected Type(String location, JSONObject schema) {
+    Type(String location, JSONObject schema) {
         this.location = location;
         this.schema = schema;
     }
 
-    protected Type(Schema schema) {
+    private Type(Schema schema) {
         this.location = schema.location;
         this.schema = schema.schema;
     }
