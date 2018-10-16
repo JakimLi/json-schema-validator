@@ -4,6 +4,7 @@ import com.github.jakimli.json.schema.validator.predicates.Predicates;
 import com.github.jakimli.json.schema.validator.validation.JsonType;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import static com.github.jakimli.json.schema.validator.assertion.Assertion.AssertionBuilder.expect;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
@@ -23,5 +24,11 @@ public class Assertions {
 
     public static Assertion<Object> mustBe(Object object) {
         return expect(object::equals).toThrow(i -> violated("must be: " + object, i))::test;
+    }
+
+    public static Assertion<Integer> multipleOf(Integer factor) {
+        return instance -> expect((Predicate<Integer>) integer -> integer % factor == 0)
+                .toThrow(e -> violated("expected to be multiple of: " + factor, instance))
+                .test(instance);
     }
 }

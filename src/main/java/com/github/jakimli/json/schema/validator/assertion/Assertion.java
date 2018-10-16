@@ -19,11 +19,11 @@ public interface Assertion<T> {
             this.predicate = predicate;
         }
 
-        static <T> AssertionBuilder<T> expect(Predicate<T> predicate) {
+        public static <T> AssertionBuilder<T> expect(Predicate<T> predicate) {
             return new AssertionBuilder<>(predicate);
         }
 
-        AssertionBuilder<T> toThrow(ExceptionSupplier exception) {
+        public AssertionBuilder<T> toThrow(ExceptionSupplier exception) {
             this.exception = exception;
             return this;
         }

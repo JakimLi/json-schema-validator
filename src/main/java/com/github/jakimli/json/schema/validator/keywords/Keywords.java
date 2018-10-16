@@ -13,6 +13,8 @@ public enum Keywords {
     TYPE("type", com.github.jakimli.json.schema.validator.keywords.Type::new),
     ENUM("enum", Enum::new),
     CONST("const", Const::new),
+    MULTIPLE_OF("multipleOf", MultipleOf::new),
+
     PROPERTIES("properties", Properties::new);
 
     private String word;
