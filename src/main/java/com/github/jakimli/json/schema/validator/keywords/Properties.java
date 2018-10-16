@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.Map;
 
 import static com.github.jakimli.json.schema.validator.exception.InvalidSchemaException.badSchema;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfJSONObject;
 import static java.util.stream.Collectors.toList;
 
 public class Properties implements Keyword {
     @Override
     public List<Validation> validations(String location, Object properties) {
 
-        if (!(properties instanceof JSONObject)) {
+        if (!instanceOfJSONObject().test(properties)) {
             throw badSchema("properties must be json object: " + properties);
         }
 

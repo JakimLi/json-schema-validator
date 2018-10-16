@@ -20,7 +20,7 @@ public class Predicates {
         return t -> new HashSet<>(t).size() == t.size();
     }
 
-    public static Predicate<Object> instanceOfObject() {
+    public static Predicate<Object> instanceOfJSONObject() {
         return it -> it instanceof JSONObject;
     }
 

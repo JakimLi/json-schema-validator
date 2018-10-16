@@ -12,7 +12,7 @@ import static com.github.jakimli.json.schema.validator.predicates.Predicates.ins
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBigDecimal;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfBoolean;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfInteger;
-import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfObject;
+import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfJSONObject;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfString;
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.or;
 import static com.github.jakimli.json.schema.validator.validation.Types.arrayType;
@@ -60,7 +60,7 @@ public enum JsonType {
                 .put(STRING, instanceOfString())
                 .put(INTEGER, instanceOfInteger())
                 .put(NULL, Objects::isNull)
-                .put(OBJECT, instanceOfObject())
+                .put(OBJECT, instanceOfJSONObject())
                 .put(BOOLEAN, instanceOfBoolean())
                 .put(NUMBER, or(instanceOfBigDecimal(), instanceOfInteger()))
                 .build())
