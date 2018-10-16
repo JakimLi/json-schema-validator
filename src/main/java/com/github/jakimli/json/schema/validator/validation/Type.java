@@ -40,7 +40,7 @@ public class Type implements JsonType.Validator {
         keyword(ENUM);
         keyword(CONST);
         keyword(TYPE);
-    };
+    }
 
     void add(List<Validation> validations) {
         if (validations == null) {
