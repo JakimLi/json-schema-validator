@@ -3,6 +3,7 @@ package com.github.jakimli.json.schema.validator.assertion;
 import com.github.jakimli.json.schema.validator.predicates.Predicates;
 import com.github.jakimli.json.schema.validator.validation.JsonType;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -28,6 +29,12 @@ public class Assertions {
 
     public static Assertion<Integer> multipleOf(Integer factor) {
         return instance -> expect((Predicate<Integer>) integer -> integer % factor == 0)
+                .toThrow(e -> violated("expected to be multiple of: " + factor, instance))
+                .test(instance);
+    }
+
+    public static Assertion<BigDecimal> multipleOf(BigDecimal factor) {
+        return instance -> expect((Predicate<BigDecimal>) decimal -> decimal.divide(factor).stripTrailingZeros().scale() <= 0)
                 .toThrow(e -> violated("expected to be multiple of: " + factor, instance))
                 .test(instance);
     }
