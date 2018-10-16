@@ -17,7 +17,7 @@ public class MultipleOf implements Keyword {
     public List<Validation> validate(String location, Object schema) {
 
         if (!(schema instanceof Integer) && !(schema instanceof BigDecimal)) {
-            throw badSchema("multipleOf has to be numeric", schema);
+            throw badSchema("multipleOf must to be numeric", schema);
         }
 
         if (toDecimal(schema).compareTo(ZERO) < 0) {
