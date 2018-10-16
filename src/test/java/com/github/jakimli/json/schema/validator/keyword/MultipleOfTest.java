@@ -89,7 +89,7 @@ public class MultipleOfTest extends TestBase {
         String instance = readFile("keyword/multipleOf/20.json");
 
         exception.expect(BadSchemaException.class);
-        exception.expectMessage("multipleOf has to be numeric, got: string");
+        exception.expectMessage("multipleOf must to be numeric, got: string");
         validate(schema, instance);
     }
 
