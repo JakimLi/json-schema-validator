@@ -19,4 +19,12 @@ public class MultipleOfTest extends TestBase {
         exception.expectMessage("expected to be multiple of: 10, got: 11");
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_multiple_of_sucess_integer() throws Exception {
+        String schema = readFile("keyword/multipleOf/schema.json");
+        String instance = readFile("keyword/multipleOf/20.json");
+
+        validate(schema, instance);
+    }
 }
