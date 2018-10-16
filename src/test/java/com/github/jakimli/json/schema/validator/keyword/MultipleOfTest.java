@@ -45,4 +45,14 @@ public class MultipleOfTest extends TestBase {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void validate_decimal_multiple_of_integer() throws Exception {
+        String schema = readFile("keyword/multipleOf/integer.schema.json");
+        String instance = readFile("keyword/multipleOf/11.0.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("expected to be multiple of: 10, got: 11.0");
+        validate(schema, instance);
+    }
 }
