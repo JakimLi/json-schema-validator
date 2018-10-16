@@ -8,7 +8,7 @@ import org.junit.Test;
 import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class EnumKeywordTest extends TestBase {
+public class EnumTest extends TestBase {
 
     @Test
     public void should_validate_enum_with_error() throws Exception {

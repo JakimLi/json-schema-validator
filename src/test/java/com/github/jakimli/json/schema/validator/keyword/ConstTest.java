@@ -7,7 +7,7 @@ import org.junit.Test;
 import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class ConstantKeywordTest extends TestBase {
+public class ConstTest extends TestBase {
 
     @Test
     public void constant_string_invalid() throws Exception {

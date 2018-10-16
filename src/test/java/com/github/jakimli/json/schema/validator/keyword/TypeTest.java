@@ -10,7 +10,7 @@ import static com.alibaba.fastjson.JSON.parse;
 import static com.github.jakimli.json.schema.validator.SchemaValidator.validate;
 import static com.github.jakimli.json.schema.validator.util.FileUtil.readFile;
 
-public class TypeKeywordTest extends TestBase {
+public class TypeTest extends TestBase {
 
     @Test
     public void validate_multiple_type() throws Exception {
