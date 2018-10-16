@@ -84,12 +84,22 @@ public class MultipleOfTest extends TestBase {
     }
 
     @Test
-    public void multiple_of_has_to_be_number_and_greater_than_0() throws Exception {
+    public void multiple_of_has_to_be_numeric() throws Exception {
         String schema = readFile("keyword/multipleOf/not_number.schema.json");
         String instance = readFile("keyword/multipleOf/20.json");
 
         exception.expect(BadSchemaException.class);
         exception.expectMessage("multipleOf has to be numeric, got: string");
+        validate(schema, instance);
+    }
+
+    @Test
+    public void multiple_of_has_to_be_greater_than_0() throws Exception {
+        String schema = readFile("keyword/multipleOf/less0.schema.json");
+        String instance = readFile("keyword/multipleOf/20.json");
+
+        exception.expect(BadSchemaException.class);
+        exception.expectMessage("multipleOf must to be greater than 0, got: -10.0");
         validate(schema, instance);
     }
 }

@@ -20,6 +20,10 @@ public class MultipleOf implements Keyword {
             throw badSchema("multipleOf has to be numeric", schema);
         }
 
+        if (toDecimal(schema).compareTo(ZERO) < 0) {
+            throw badSchema("multipleOf must to be greater than 0", schema);
+        }
+
         return newArrayList(assertion(instance -> {
 
             if (bothInteger(schema, instance) && !divisible(schema, instance)) {
