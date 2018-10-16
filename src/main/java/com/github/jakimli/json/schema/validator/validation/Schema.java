@@ -13,9 +13,9 @@ public class Schema extends Type implements JsonType.Validator {
     }
 
     @Override
-    protected void keywords() {
-        super.keywords();
+    public List<Validation> validate() {
         add(subSchema());
+        return super.validate();
     }
 
     private List<Validation> subSchema() {
