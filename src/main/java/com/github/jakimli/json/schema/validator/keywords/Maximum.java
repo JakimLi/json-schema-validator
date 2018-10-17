@@ -26,7 +26,7 @@ public class Maximum implements Keyword {
             BigDecimal actual = toDecimal(instance);
             BigDecimal maximum = toDecimal(schema);
 
-            if (maximum.compareTo(actual) < 0) {
+            if (actual.compareTo(maximum) > 0) {
                 throw violated(format("expected to less than or equals to: %s, got: %s", schema, instance));
             }
 
