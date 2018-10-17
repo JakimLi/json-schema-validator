@@ -1,4 +1,4 @@
-package com.github.jakimli.json.schema.validator.keyword;
+package com.github.jakimli.json.schema.validator.keyword.mumber;
 
 import com.github.jakimli.json.schema.validator.TestBase;
 import com.github.jakimli.json.schema.validator.exception.BadSchemaException;
