@@ -2,6 +2,7 @@ package com.github.jakimli.json.schema.validator.validation;
 
 import com.github.jakimli.json.schema.validator.validation.JsonType.Factory;
 
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.MAXIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MULTIPLE_OF;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.PROPERTIES;
 import static com.github.jakimli.json.schema.validator.validation.Type.type;
@@ -21,7 +22,9 @@ class Types {
     }
 
     static Factory integerType() {
-        return Type::type;
+        return schema -> type(schema)
+                .keyword(MULTIPLE_OF)
+                .keyword(MAXIMUM);
     }
 
     static Factory nullType() {
@@ -29,7 +32,9 @@ class Types {
     }
 
     static Factory numberType() {
-        return schema -> type(schema).keyword(MULTIPLE_OF);
+        return schema -> type(schema)
+                .keyword(MULTIPLE_OF)
+                .keyword(MAXIMUM);
     }
 
     static Factory objectType() {

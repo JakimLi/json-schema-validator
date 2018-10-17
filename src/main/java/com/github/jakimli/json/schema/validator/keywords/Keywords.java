@@ -13,7 +13,9 @@ public enum Keywords {
     TYPE("type", com.github.jakimli.json.schema.validator.keywords.Type::new),
     ENUM("enum", Enum::new),
     CONST("const", Const::new),
+
     MULTIPLE_OF("multipleOf", MultipleOf::new),
+    MAXIMUM("maximum", Maximum::new),
 
     PROPERTIES("properties", Properties::new);
 
