@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "count": {
-          "type": "integer",
+          "type": "number",
           "multipleOf": 10
         }
       }

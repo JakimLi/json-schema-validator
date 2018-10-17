@@ -49,7 +49,7 @@ public class MultipleOfTest extends TestBase {
 
     @Test
     public void validate_decimal_multiple_of_integer_fail() throws Exception {
-        String schema = readFile("keyword/multipleOf/integer.schema.json");
+        String schema = readFile("keyword/multipleOf/number.multiple.of.10.schema.json");
         String instance = readFile("keyword/multipleOf/11.0.json");
 
         exception.expect(SchemaViolatedException.class);
@@ -59,7 +59,7 @@ public class MultipleOfTest extends TestBase {
 
     @Test
     public void validate_decimal_multiple_of_integer_success() throws Exception {
-        String schema = readFile("keyword/multipleOf/integer.schema.json");
+        String schema = readFile("keyword/multipleOf/number.multiple.of.10.schema.json");
         String instance = readFile("keyword/multipleOf/30.0000.json");
 
         validate(schema, instance);
