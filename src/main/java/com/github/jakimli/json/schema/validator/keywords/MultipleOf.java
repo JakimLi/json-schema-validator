@@ -29,11 +29,15 @@ public class MultipleOf implements Keyword {
             BigDecimal actual = toDecimal(instance);
             BigDecimal factor = toDecimal(schema);
 
-            if (actual.divideAndRemainder(factor)[1].compareTo(ZERO) > 0) {
+            if (multipleOf(actual, factor)) {
                 throw violated("expected to be multiple of: " + factor + ", got: " + actual);
             }
 
         }).at(location));
+    }
+
+    private boolean multipleOf(BigDecimal actual, BigDecimal factor) {
+        return actual.divideAndRemainder(factor)[1].compareTo(ZERO) > 0;
     }
 
     private boolean notDecimal(Object schema) {
