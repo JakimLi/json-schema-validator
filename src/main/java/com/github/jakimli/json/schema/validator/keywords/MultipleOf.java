@@ -19,7 +19,7 @@ public class MultipleOf implements Keyword {
     @Override
     public List<Validation> validate(String location, Object schema) {
 
-        if (!integer(schema) && !notDecimal(schema)) {
+        if (!integer(schema) && !decimal(schema)) {
             throw badSchema("multipleOf must to be numeric", schema);
         }
 
@@ -43,7 +43,7 @@ public class MultipleOf implements Keyword {
         return actual.divideAndRemainder(factor)[1].compareTo(ZERO) > 0;
     }
 
-    private boolean notDecimal(Object schema) {
+    private boolean decimal(Object schema) {
         return schema instanceof BigDecimal;
     }
 
