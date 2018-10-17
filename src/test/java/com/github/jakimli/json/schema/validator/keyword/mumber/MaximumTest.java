@@ -60,4 +60,15 @@ public class MaximumTest extends TestBase {
 
         validate(schema, instance);
     }
+
+    @Test
+    public void decimal_max_but_greater_than_by_integer() throws Exception {
+        String schema = readFile("keyword/maximum/decimal.schema.json");
+        String instance = readFile("keyword/maximum/11.json");
+
+        exception.expect(SchemaViolatedException.class);
+        exception.expectMessage("expected to less than or equals to: 10.05, got: 11");
+        validate(schema, instance);
+    }
+
 }
