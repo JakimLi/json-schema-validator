@@ -8,6 +8,7 @@ import java.util.List;
 
 import static com.github.jakimli.json.schema.validator.exception.BadSchemaException.badSchema;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
+import static com.github.jakimli.json.schema.validator.util.NumberUtil.decimal;
 import static com.github.jakimli.json.schema.validator.util.NumberUtil.integer;
 import static com.github.jakimli.json.schema.validator.util.NumberUtil.lessThanZero;
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
@@ -41,10 +42,6 @@ public class MultipleOf implements Keyword {
 
     private boolean multipleOf(BigDecimal actual, BigDecimal factor) {
         return actual.divideAndRemainder(factor)[1].compareTo(ZERO) > 0;
-    }
-
-    private boolean decimal(Object schema) {
-        return schema instanceof BigDecimal;
     }
 
 }

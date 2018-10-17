@@ -1,6 +1,7 @@
 package com.github.jakimli.json.schema.validator.keyword.mumber;
 
 import com.github.jakimli.json.schema.validator.TestBase;
+import com.github.jakimli.json.schema.validator.exception.BadSchemaException;
 import com.github.jakimli.json.schema.validator.exception.SchemaViolatedException;
 import org.junit.Test;
 
@@ -71,4 +72,13 @@ public class MaximumTest extends TestBase {
         validate(schema, instance);
     }
 
+    @Test
+    public void bad_schema_not_number() throws Exception {
+        String schema = readFile("keyword/maximum/not_number.schema.json");
+        String instance = readFile("keyword/maximum/11.json");
+
+        exception.expect(BadSchemaException.class);
+        exception.expectMessage("expected be numeric value, got: string");
+        validate(schema, instance);
+    }
 }

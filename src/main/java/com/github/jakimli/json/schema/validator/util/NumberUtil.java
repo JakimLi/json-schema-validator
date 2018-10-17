@@ -17,4 +17,8 @@ public class NumberUtil {
     public static boolean lessThanZero(Object schema) {
         return toDecimal(schema).compareTo(ZERO) < 0;
     }
+
+    public static boolean decimal(Object schema) {
+        return schema instanceof BigDecimal;
+    }
 }
