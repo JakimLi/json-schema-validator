@@ -26,4 +26,12 @@ public class MaximumTest extends TestBase {
 
         validate(schema, instance);
     }
+    
+    @Test
+    public void integer_max_less_than() throws Exception {
+        String schema = readFile("keyword/maximum/integer.schema.json");
+        String instance = readFile("keyword/maximum/9.json");
+
+        validate(schema, instance);
+    }
 }
