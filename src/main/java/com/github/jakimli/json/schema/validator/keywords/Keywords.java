@@ -16,6 +16,7 @@ public enum Keywords {
 
     MULTIPLE_OF("multipleOf", MultipleOf::new),
     MAXIMUM("maximum", Maximum::new),
+    EXCLUSIVE_MAXIMUM("exclusiveMaximum", ExclusiveMaximum::new),
 
     PROPERTIES("properties", Properties::new);
 

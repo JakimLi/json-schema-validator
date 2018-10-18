@@ -26,10 +26,14 @@ public class Maximum implements Keyword {
             BigDecimal actual = toDecimal(instance);
             BigDecimal maximum = toDecimal(schema);
 
-            if (actual.compareTo(maximum) > 0) {
-                throw violated(format("expected to less than or equals to: %s, got: %s", schema, instance));
-            }
+            asserts(actual, maximum);
 
         }).at(location));
+    }
+
+    protected void asserts(BigDecimal actual, BigDecimal maximum) {
+        if (actual.compareTo(maximum) > 0) {
+            throw violated(format("expected to less than or equals to: %s, got: %s", maximum, actual));
+        }
     }
 }
