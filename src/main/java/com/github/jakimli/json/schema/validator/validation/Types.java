@@ -2,12 +2,12 @@ package com.github.jakimli.json.schema.validator.validation;
 
 import com.github.jakimli.json.schema.validator.validation.JsonType.Factory;
 
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.EXCLUSIVE_MAXIMUM;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.EXCLUSIVE_MINIMUM;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.MAXIMUM;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.MINIMUM;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.MULTIPLE_OF;
-import static com.github.jakimli.json.schema.validator.keywords.Keywords.PROPERTIES;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.EXCLUSIVE_MAXIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.EXCLUSIVE_MINIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.MAXIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.MINIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.MULTIPLE_OF;
+import static com.github.jakimli.json.schema.validator.keywords.Keyword.PROPERTIES;
 import static com.github.jakimli.json.schema.validator.validation.Type.type;
 
 class Types {

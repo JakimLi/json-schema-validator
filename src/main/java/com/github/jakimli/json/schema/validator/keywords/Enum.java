@@ -11,7 +11,7 @@ import static com.github.jakimli.json.schema.validator.predicates.Predicates.ins
 import static com.github.jakimli.json.schema.validator.validation.Validation.Builder.assertion;
 import static com.google.common.collect.Lists.newArrayList;
 
-public class Enum implements Keyword {
+public class Enum implements Keyword.Validator {
 
     @Override
     public List<Validation> validate(String location, Object value) {

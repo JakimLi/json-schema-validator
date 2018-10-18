@@ -12,7 +12,7 @@ import static com.github.jakimli.json.schema.validator.exception.BadSchemaExcept
 import static com.github.jakimli.json.schema.validator.predicates.Predicates.instanceOfJSONObject;
 import static java.util.stream.Collectors.toList;
 
-public class Properties implements Keyword {
+public class Properties implements Keyword.Validator {
     @Override
     public List<Validation> validate(String location, Object properties) {
 

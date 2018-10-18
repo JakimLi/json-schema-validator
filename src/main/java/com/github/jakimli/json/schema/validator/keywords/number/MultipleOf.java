@@ -16,7 +16,7 @@ import static com.github.jakimli.json.schema.validator.validation.Validation.Bui
 import static com.google.common.collect.Lists.newArrayList;
 import static java.math.BigDecimal.ZERO;
 
-public class MultipleOf implements Keyword {
+public class MultipleOf implements Keyword.Validator {
 
     @Override
     public List<Validation> validate(String location, Object schema) {
