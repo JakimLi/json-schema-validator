@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static com.github.jakimli.json.schema.validator.exception.SchemaViolatedException.violated;
 import static java.lang.String.format;
 
-public class ExclusiveMaximum extends Maximum {
+public class ExclusiveMaximum extends NumberComparison {
 
     @Override
     protected void asserts(BigDecimal actual, BigDecimal maximum) {
