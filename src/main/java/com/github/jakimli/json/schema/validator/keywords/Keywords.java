@@ -1,6 +1,7 @@
 package com.github.jakimli.json.schema.validator.keywords;
 
 import com.github.jakimli.json.schema.validator.keywords.number.ExclusiveMaximum;
+import com.github.jakimli.json.schema.validator.keywords.number.ExclusiveMinimum;
 import com.github.jakimli.json.schema.validator.keywords.number.Maximum;
 import com.github.jakimli.json.schema.validator.keywords.number.Minimum;
 import com.github.jakimli.json.schema.validator.keywords.number.MultipleOf;
@@ -22,6 +23,7 @@ public enum Keywords {
     MAXIMUM("maximum", Maximum::new),
     EXCLUSIVE_MAXIMUM("exclusiveMaximum", ExclusiveMaximum::new),
     MINIMUM("minimum", Minimum::new),
+    EXCLUSIVE_MINIMUM("exclusiveMinimum", ExclusiveMinimum::new),
 
     PROPERTIES("properties", Properties::new);
 

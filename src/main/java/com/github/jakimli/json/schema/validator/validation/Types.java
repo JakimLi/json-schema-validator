@@ -3,6 +3,7 @@ package com.github.jakimli.json.schema.validator.validation;
 import com.github.jakimli.json.schema.validator.validation.JsonType.Factory;
 
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.EXCLUSIVE_MAXIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.EXCLUSIVE_MINIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MAXIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MINIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MULTIPLE_OF;
@@ -28,6 +29,7 @@ class Types {
                 .keyword(MULTIPLE_OF)
                 .keyword(EXCLUSIVE_MAXIMUM)
                 .keyword(MAXIMUM)
+                .keyword(EXCLUSIVE_MINIMUM)
                 .keyword(MINIMUM)
                 ;
     }
@@ -41,6 +43,7 @@ class Types {
                 .keyword(MULTIPLE_OF)
                 .keyword(EXCLUSIVE_MAXIMUM)
                 .keyword(MAXIMUM)
+                .keyword(EXCLUSIVE_MINIMUM)
                 .keyword(MINIMUM)
                 ;
     }
