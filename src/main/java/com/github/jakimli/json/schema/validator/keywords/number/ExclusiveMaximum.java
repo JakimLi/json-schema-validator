@@ -8,9 +8,9 @@ import static java.lang.String.format;
 public class ExclusiveMaximum extends NumberComparison {
 
     @Override
-    protected void asserts(BigDecimal actual, BigDecimal maximum) {
-        if (actual.compareTo(maximum) >= 0) {
-            throw violated(format("expected to less than: %s, got: %s", maximum, actual));
+    protected void asserts(BigDecimal instance, BigDecimal schema) {
+        if (instance.compareTo(schema) >= 0) {
+            throw violated(format("expected to less than: %s, got: %s", schema, instance));
         }
     }
 }

@@ -4,6 +4,7 @@ import com.github.jakimli.json.schema.validator.validation.JsonType.Factory;
 
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.EXCLUSIVE_MAXIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MAXIMUM;
+import static com.github.jakimli.json.schema.validator.keywords.Keywords.MINIMUM;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.MULTIPLE_OF;
 import static com.github.jakimli.json.schema.validator.keywords.Keywords.PROPERTIES;
 import static com.github.jakimli.json.schema.validator.validation.Type.type;
@@ -26,7 +27,9 @@ class Types {
         return schema -> type(schema)
                 .keyword(MULTIPLE_OF)
                 .keyword(EXCLUSIVE_MAXIMUM)
-                .keyword(MAXIMUM);
+                .keyword(MAXIMUM)
+                .keyword(MINIMUM)
+                ;
     }
 
     static Factory nullType() {
@@ -37,7 +40,9 @@ class Types {
         return schema -> type(schema)
                 .keyword(MULTIPLE_OF)
                 .keyword(EXCLUSIVE_MAXIMUM)
-                .keyword(MAXIMUM);
+                .keyword(MAXIMUM)
+                .keyword(MINIMUM)
+                ;
     }
 
     static Factory objectType() {
