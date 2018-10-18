@@ -1,5 +1,8 @@
 package com.github.jakimli.json.schema.validator.keywords;
 
+import com.github.jakimli.json.schema.validator.keywords.number.ExclusiveMaximum;
+import com.github.jakimli.json.schema.validator.keywords.number.Maximum;
+import com.github.jakimli.json.schema.validator.keywords.number.MultipleOf;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 import com.github.jakimli.json.schema.validator.validation.Type;
 

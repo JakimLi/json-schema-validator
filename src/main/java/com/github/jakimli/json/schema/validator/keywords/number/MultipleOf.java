@@ -1,5 +1,6 @@
-package com.github.jakimli.json.schema.validator.keywords;
+package com.github.jakimli.json.schema.validator.keywords.number;
 
+import com.github.jakimli.json.schema.validator.keywords.Keyword;
 import com.github.jakimli.json.schema.validator.util.NumberUtil;
 import com.github.jakimli.json.schema.validator.validation.Validation;
 

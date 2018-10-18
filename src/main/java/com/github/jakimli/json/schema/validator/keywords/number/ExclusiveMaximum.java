@@ -1,4 +1,4 @@
-package com.github.jakimli.json.schema.validator.keywords;
+package com.github.jakimli.json.schema.validator.keywords.number;
 
 import java.math.BigDecimal;
 
